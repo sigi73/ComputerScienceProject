@@ -1,0 +1,4 @@
+/home/siddharth/Packages/clion-2016.2.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/siddharth/ClionProjects/VulkanEngine
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug

@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+a01abcda26433c0232ae513217c08eae cube-frag.spv
+86d31d725fa05df8534ce8e68beeb8bf cube-vert.spv

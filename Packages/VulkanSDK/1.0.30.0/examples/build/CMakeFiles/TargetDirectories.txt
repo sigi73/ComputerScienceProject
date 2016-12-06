@@ -1,0 +1,5 @@
+/home/siddharth/Development/vulkan/VulkanSDK/1.0.30.0/examples/build/CMakeFiles/edit_cache.dir
+/home/siddharth/Development/vulkan/VulkanSDK/1.0.30.0/examples/build/CMakeFiles/vulkaninfo.dir
+/home/siddharth/Development/vulkan/VulkanSDK/1.0.30.0/examples/build/CMakeFiles/cubepp.dir
+/home/siddharth/Development/vulkan/VulkanSDK/1.0.30.0/examples/build/CMakeFiles/cube.dir
+/home/siddharth/Development/vulkan/VulkanSDK/1.0.30.0/examples/build/CMakeFiles/rebuild_cache.dir
