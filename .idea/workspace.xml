@@ -43,7 +43,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76a3da7b-8e65-45dd-aedd-99f694adf8ea" name="Default" comment="" />
+    <list default="true" id="76a3da7b-8e65-45dd-aedd-99f694adf8ea" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="VulkanEngine.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -520,12 +522,12 @@
       <workItem from="1480535653080" duration="561000" />
       <workItem from="1480701734908" duration="5088000" />
       <workItem from="1480706845854" duration="159000" />
-      <workItem from="1481047436169" duration="1280000" />
+      <workItem from="1481047436169" duration="1751000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26105000" />
+    <option name="totallyTimeSpent" value="26576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1600" height="873" extended-state="6" />
