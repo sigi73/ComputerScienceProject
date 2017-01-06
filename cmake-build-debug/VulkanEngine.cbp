@@ -90,10 +90,31 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Mesh.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Mesh.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Shader.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Shader.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VDeleter.cpp">
 			<Option target="VulkanEngine"/>
 		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VDeleter.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.cpp">
 			<Option target="VulkanEngine"/>
 		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h">

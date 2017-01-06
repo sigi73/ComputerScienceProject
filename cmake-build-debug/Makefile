@@ -123,6 +123,60 @@ VulkanEngine/fast:
 	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/build
 .PHONY : VulkanEngine/fast
 
+Mesh.o: Mesh.cpp.o
+
+.PHONY : Mesh.o
+
+# target to build an object file
+Mesh.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Mesh.cpp.o
+.PHONY : Mesh.cpp.o
+
+Mesh.i: Mesh.cpp.i
+
+.PHONY : Mesh.i
+
+# target to preprocess a source file
+Mesh.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Mesh.cpp.i
+.PHONY : Mesh.cpp.i
+
+Mesh.s: Mesh.cpp.s
+
+.PHONY : Mesh.s
+
+# target to generate assembly for a file
+Mesh.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Mesh.cpp.s
+.PHONY : Mesh.cpp.s
+
+Shader.o: Shader.cpp.o
+
+.PHONY : Shader.o
+
+# target to build an object file
+Shader.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.o
+.PHONY : Shader.cpp.o
+
+Shader.i: Shader.cpp.i
+
+.PHONY : Shader.i
+
+# target to preprocess a source file
+Shader.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.i
+.PHONY : Shader.cpp.i
+
+Shader.s: Shader.cpp.s
+
+.PHONY : Shader.s
+
+# target to generate assembly for a file
+Shader.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.s
+.PHONY : Shader.cpp.s
+
 VDeleter.o: VDeleter.cpp.o
 
 .PHONY : VDeleter.o
@@ -149,6 +203,60 @@ VDeleter.s: VDeleter.cpp.s
 VDeleter.cpp.s:
 	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VDeleter.cpp.s
 .PHONY : VDeleter.cpp.s
+
+VulkanApplication.o: VulkanApplication.cpp.o
+
+.PHONY : VulkanApplication.o
+
+# target to build an object file
+VulkanApplication.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o
+.PHONY : VulkanApplication.cpp.o
+
+VulkanApplication.i: VulkanApplication.cpp.i
+
+.PHONY : VulkanApplication.i
+
+# target to preprocess a source file
+VulkanApplication.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.i
+.PHONY : VulkanApplication.cpp.i
+
+VulkanApplication.s: VulkanApplication.cpp.s
+
+.PHONY : VulkanApplication.s
+
+# target to generate assembly for a file
+VulkanApplication.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.s
+.PHONY : VulkanApplication.cpp.s
+
+VulkanCommon.o: VulkanCommon.cpp.o
+
+.PHONY : VulkanCommon.o
+
+# target to build an object file
+VulkanCommon.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.o
+.PHONY : VulkanCommon.cpp.o
+
+VulkanCommon.i: VulkanCommon.cpp.i
+
+.PHONY : VulkanCommon.i
+
+# target to preprocess a source file
+VulkanCommon.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.i
+.PHONY : VulkanCommon.cpp.i
+
+VulkanCommon.s: VulkanCommon.cpp.s
+
+.PHONY : VulkanCommon.s
+
+# target to generate assembly for a file
+VulkanCommon.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.s
+.PHONY : VulkanCommon.cpp.s
 
 main.o: main.cpp.o
 
@@ -186,9 +294,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... VulkanEngine"
+	@echo "... Mesh.o"
+	@echo "... Mesh.i"
+	@echo "... Mesh.s"
+	@echo "... Shader.o"
+	@echo "... Shader.i"
+	@echo "... Shader.s"
 	@echo "... VDeleter.o"
 	@echo "... VDeleter.i"
 	@echo "... VDeleter.s"
+	@echo "... VulkanApplication.o"
+	@echo "... VulkanApplication.i"
+	@echo "... VulkanApplication.s"
+	@echo "... VulkanCommon.o"
+	@echo "... VulkanCommon.i"
+	@echo "... VulkanCommon.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

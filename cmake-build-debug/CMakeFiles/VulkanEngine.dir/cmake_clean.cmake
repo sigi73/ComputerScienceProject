@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/VulkanEngine.dir/main.cpp.o"
   "CMakeFiles/VulkanEngine.dir/VDeleter.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/Shader.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/Mesh.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o"
   "VulkanEngine.pdb"
   "VulkanEngine"
 )
