@@ -1,10 +1,9 @@
 //
-// Created by siddharth on 1/4/17.
+// Created by siddharth on 1/10/17.
 //
 
 #ifndef VULKANENGINE_VULKANAPPLICATION_H
 #define VULKANENGINE_VULKANAPPLICATION_H
-
 
 #include <vector>
 #include <iostream>

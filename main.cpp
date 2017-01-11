@@ -1,7 +1,6 @@
 
 
 #include "VulkanApplication.h"
-#include "Mesh.h"
 
 
 const std::string HOUSE_PATH = "models/chalet.obj";
@@ -28,7 +27,6 @@ int main() {
   for (int i = 0; i < mesh2.indices.size(); i++) {
     mesh2.indices[i] += mesh.vertices.size();
   }
-
 
   meshes.push_back(mesh2);
 

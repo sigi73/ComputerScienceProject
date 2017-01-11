@@ -153,14 +153,26 @@ unordered_map
 -
 glm/glm.hpp
 -
-Shader.h
-/home/siddharth/ClionProjects/VulkanEngine/Shader.h
 
-/home/siddharth/ClionProjects/VulkanEngine/Shader.cpp
-Shader.h
-/home/siddharth/ClionProjects/VulkanEngine/Shader.h
+/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp
+MeshInternal.h
+/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
 
-/home/siddharth/ClionProjects/VulkanEngine/Shader.h
+/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
+VulkanCommon.h
+/home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
+Mesh.h
+/home/siddharth/ClionProjects/VulkanEngine/Mesh.h
+VDeleter.h
+/home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
+Texture.h
+/home/siddharth/ClionProjects/VulkanEngine/Texture.h
+
+/home/siddharth/ClionProjects/VulkanEngine/Texture.cpp
+Texture.h
+/home/siddharth/ClionProjects/VulkanEngine/Texture.h
+
+/home/siddharth/ClionProjects/VulkanEngine/Texture.h
 
 /home/siddharth/ClionProjects/VulkanEngine/VDeleter.cpp
 VDeleter.h
@@ -207,6 +219,8 @@ VDeleter.h
 /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
 Mesh.h
 /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
+MeshInternal.h
+/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
 
 /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.cpp
 VulkanCommon.h
@@ -227,6 +241,4 @@ vector
 /home/siddharth/ClionProjects/VulkanEngine/main.cpp
 VulkanApplication.h
 /home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h
-Mesh.h
-/home/siddharth/ClionProjects/VulkanEngine/Mesh.h
 

@@ -12,7 +12,7 @@ MeshInternal::MeshInternal(Mesh mesh, VDeleter<VkDevice> device, Texture inputTe
   uniformStagingBuffer{device, vkDestroyBuffer},
   uniformStagingBufferMemory{device, vkFreeMemory},
   uniformBuffer{device, vkDestroyBuffer},
-  uniformBufferMemory{device, vkDestroyBuffer}
+  uniformBufferMemory{device, vkFreeMemory}
 {
   //vertexBuffer(device, vkDestroyBuffer);
   texture = inputTexture;
