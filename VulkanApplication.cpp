@@ -112,11 +112,11 @@ void VulkanApplication::initVulkan() {
   createTextureImage();
   createTextureImageView();
   createTextureSampler();
-  createVertexBuffer();
-  createIndexBuffer();
-  createUniformBuffer();
+  createVertexBuffer(); //Create per object
+  createIndexBuffer(); //Create per object
+  createUniformBuffer(); //Create per object
   createDescriptorPool();
-  createDescriptorSet();
+  createDescriptorSet(); //Create per object
   createCommandBuffers();
   createSemaphores();
 }
@@ -1112,18 +1112,10 @@ void VulkanApplication::loadModels() {
 #else
 void VulkanApplication::loadModels() {
 
-  printf("Meshes.size: %d\n", inputMeshes.size());
   for (int i = 0; i < inputMeshes.size(); i++) {
-    printf("i: %d, meshes[i].vertices.size: %d, meshes[i].indices.size: %d\n", i, inputMeshes[i].vertices.size(),
-           inputMeshes[i].indices.size());
-    vertices.insert(vertices.end(), inputMeshes[i].vertices.begin(), inputMeshes[i].vertices.end());
-    indices.insert(indices.end(), inputMeshes[i].indices.begin(), inputMeshes[i].indices.end());
+    MeshInternal meshInternal(device, inputMeshes[i]);
+    meshes.push_back(meshInternal);
   }
-  printf("vertices.size: %d, indices.size: %d\n", vertices.size(), indices.size());
-
-
-  //vertices = mesh->vertices;
-  //indices = mesh->indices;
 }
 #endif
 

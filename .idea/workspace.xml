@@ -44,21 +44,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76a3da7b-8e65-45dd-aedd-99f694adf8ea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestApplication.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TestApplication.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Shader.cpp.o" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Mesh.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Mesh.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/main.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/main.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine" afterPath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Mesh.h" afterPath="$PROJECT_DIR$/Mesh.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MeshInternal.cpp" afterPath="$PROJECT_DIR$/MeshInternal.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MeshInternal.h" afterPath="$PROJECT_DIR$/MeshInternal.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VulkanApplication.cpp" afterPath="$PROJECT_DIR$/VulkanApplication.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VulkanApplication.h" afterPath="$PROJECT_DIR$/VulkanApplication.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="VulkanEngine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,15 +83,15 @@
       <file leaf-file-name="VulkanApplication.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VulkanApplication.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+            <state relative-caret-position="504">
+              <caret line="118" column="43" lean-forward="false" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
               <folding>
                 <element signature="e#103#182#0" expanded="true" />
                 <element signature="e#254#276#0" expanded="true" />
                 <element signature="e#444#462#0" expanded="true" />
                 <element signature="e#2369#2391#0" expanded="true" />
-                <element signature="e#3539#4069#0" expanded="true" />
-                <element signature="e#37456#39691#0" expanded="true" />
+                <element signature="e#3619#4149#0" expanded="true" />
+                <element signature="e#37536#39771#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,15 +100,13 @@
       <file leaf-file-name="VulkanApplication.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VulkanApplication.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
               <folding>
                 <element signature="e#126#143#0" expanded="true" />
                 <element signature="e#273#294#0" expanded="true" />
                 <element signature="e#955#1052#0" expanded="true" />
                 <element signature="e#4090#4117#0" expanded="true" />
-                <marker date="1484117799487" expanded="true" signature="364:7292" ph="{...}" />
-                <marker date="1484117799487" expanded="true" signature="7205:7290" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -150,8 +138,8 @@
       <file leaf-file-name="MeshInternal.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MeshInternal.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+            <state relative-caret-position="306">
+              <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -160,10 +148,22 @@
       <file leaf-file-name="MeshInternal.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MeshInternal.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="20" column="7" lean-forward="false" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
               <folding>
                 <element signature="e#226#243#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mesh.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Mesh.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding>
+                <element signature="e#100#117#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -186,15 +186,15 @@
         <option value="$PROJECT_DIR$/VulkanCommon.cpp" />
         <option value="$PROJECT_DIR$/VulkanCommon.h" />
         <option value="$PROJECT_DIR$/Mesh.cpp" />
-        <option value="$PROJECT_DIR$/Mesh.h" />
-        <option value="$PROJECT_DIR$/MeshInternal.h" />
         <option value="$PROJECT_DIR$/TestApplication.h" />
         <option value="$PROJECT_DIR$/VulkanApplication.h" />
-        <option value="$PROJECT_DIR$/MeshInternal.cpp" />
-        <option value="$PROJECT_DIR$/VulkanApplication.cpp" />
         <option value="$PROJECT_DIR$/TestApplication.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/Mesh.h" />
+        <option value="$PROJECT_DIR$/MeshInternal.cpp" />
+        <option value="$PROJECT_DIR$/MeshInternal.h" />
+        <option value="$PROJECT_DIR$/VulkanApplication.cpp" />
       </list>
     </option>
   </component>
@@ -668,16 +668,16 @@
       <workItem from="1483739199932" duration="124000" />
       <workItem from="1483739693863" duration="96000" />
       <workItem from="1484071033357" duration="10203000" />
-      <workItem from="1484116367645" duration="2322000" />
+      <workItem from="1484116367645" duration="4359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102495000" />
+    <option name="totallyTimeSpent" value="104532000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="27" width="1543" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22185649" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -685,7 +685,7 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32806325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16552667" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16552667" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1018,16 +1018,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Shader.cpp" />
     <entry file="file://$PROJECT_DIR$/Shader.h" />
-    <entry file="file://$PROJECT_DIR$/Mesh.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="18" column="14" lean-forward="false" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-          <folding>
-            <element signature="e#100#117#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Texture.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1055,48 +1045,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MeshInternal.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="e#226#243#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VulkanApplication.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#126#143#0" expanded="true" />
-            <element signature="e#273#294#0" expanded="true" />
-            <element signature="e#955#1052#0" expanded="true" />
-            <element signature="e#4090#4117#0" expanded="true" />
-            <marker date="1484117799487" expanded="true" signature="364:7292" ph="{...}" />
-            <marker date="1484117799487" expanded="true" signature="7205:7290" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MeshInternal.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="41" lean-forward="false" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TestApplication.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding>
-            <element signature="e#122#139#0" expanded="true" />
-            <element signature="e#269#290#0" expanded="true" />
-            <element signature="e#947#1044#0" expanded="true" />
-            <element signature="e#4082#4109#0" expanded="true" />
+            <element signature="e#122#139#0" expanded="false" />
+            <element signature="e#269#290#0" expanded="false" />
+            <element signature="e#947#1044#0" expanded="false" />
+            <element signature="e#4082#4109#0" expanded="false" />
             <marker date="1484117677543" expanded="true" signature="358:7284" ph="{...}" />
             <marker date="1484117677543" expanded="true" signature="7197:7282" ph="{...}" />
           </folding>
@@ -1108,12 +1065,12 @@
         <state relative-caret-position="324">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="e#100#179#0" expanded="true" />
-            <element signature="e#251#273#0" expanded="true" />
-            <element signature="e#441#459#0" expanded="true" />
-            <element signature="e#2382#2404#0" expanded="true" />
-            <element signature="e#3636#4164#0" expanded="true" />
-            <element signature="e#38862#41095#0" expanded="true" />
+            <element signature="e#100#179#0" expanded="false" />
+            <element signature="e#251#273#0" expanded="false" />
+            <element signature="e#441#459#0" expanded="false" />
+            <element signature="e#2382#2404#0" expanded="false" />
+            <element signature="e#3636#4164#0" expanded="false" />
+            <element signature="e#38862#41095#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1136,17 +1093,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Mesh.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#100#117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VulkanApplication.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="62" column="11" lean-forward="false" selection-start-line="62" selection-start-column="11" selection-end-line="62" selection-end-column="11" />
+          <folding>
+            <element signature="e#126#143#0" expanded="true" />
+            <element signature="e#273#294#0" expanded="true" />
+            <element signature="e#955#1052#0" expanded="true" />
+            <element signature="e#4090#4117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MeshInternal.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MeshInternal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="20" column="7" lean-forward="false" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+          <folding>
+            <element signature="e#226#243#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VulkanApplication.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="19" column="27" lean-forward="false" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        <state relative-caret-position="504">
+          <caret line="118" column="43" lean-forward="false" selection-start-line="118" selection-start-column="43" selection-end-line="118" selection-end-column="43" />
           <folding>
             <element signature="e#103#182#0" expanded="true" />
             <element signature="e#254#276#0" expanded="true" />
             <element signature="e#444#462#0" expanded="true" />
             <element signature="e#2369#2391#0" expanded="true" />
-            <element signature="e#3539#4069#0" expanded="true" />
-            <element signature="e#37456#39691#0" expanded="true" />
+            <element signature="e#3619#4149#0" expanded="true" />
+            <element signature="e#37536#39771#0" expanded="true" />
           </folding>
         </state>
       </provider>

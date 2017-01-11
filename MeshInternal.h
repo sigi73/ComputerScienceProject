@@ -18,7 +18,7 @@
 
 
 class MeshInternal {
-
+ public:
   std::vector<Vertex> vertices;
   std::vector<uint32_t> indices;
 
@@ -34,7 +34,7 @@ class MeshInternal {
 
   Texture texture;
 
-  MeshInternal(Mesh mesh, VDeleter<VkDevice> device, Texture inputTexture);
+  MeshInternal(VDeleter<VkDevice> device, Mesh mesh);
 
   void updateUBO();
 };

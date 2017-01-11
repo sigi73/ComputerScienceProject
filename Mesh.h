@@ -10,6 +10,7 @@
 #include <string>
 #include <unordered_map>
 #include <glm/glm.hpp>
+#include "Texture.h"
 
 struct Vertex;
 
@@ -18,6 +19,8 @@ class Mesh {
  public:
   std::vector<Vertex> vertices;
   std::vector<uint32_t> indices;
+
+  Texture texture;
 
   Mesh();
   Mesh(std::string path);

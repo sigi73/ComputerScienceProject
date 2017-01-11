@@ -4,7 +4,7 @@
 
 #include "MeshInternal.h"
 
-MeshInternal::MeshInternal(Mesh mesh, VDeleter<VkDevice> device, Texture inputTexture) :
+MeshInternal::MeshInternal(VDeleter<VkDevice> device, Mesh mesh) :
   vertexBuffer{device, vkDestroyBuffer},
   vertexBufferMemory{device, vkFreeMemory},
   indexBuffer{device, vkDestroyBuffer},
@@ -15,7 +15,7 @@ MeshInternal::MeshInternal(Mesh mesh, VDeleter<VkDevice> device, Texture inputTe
   uniformBufferMemory{device, vkFreeMemory}
 {
   //vertexBuffer(device, vkDestroyBuffer);
-  texture = inputTexture;
+  texture = mesh.texture;
 }
 
 void MeshInternal::updateUBO() {
