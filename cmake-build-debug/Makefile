@@ -150,32 +150,59 @@ Mesh.cpp.s:
 	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Mesh.cpp.s
 .PHONY : Mesh.cpp.s
 
-Shader.o: Shader.cpp.o
+MeshInternal.o: MeshInternal.cpp.o
 
-.PHONY : Shader.o
+.PHONY : MeshInternal.o
 
 # target to build an object file
-Shader.cpp.o:
-	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.o
-.PHONY : Shader.cpp.o
+MeshInternal.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o
+.PHONY : MeshInternal.cpp.o
 
-Shader.i: Shader.cpp.i
+MeshInternal.i: MeshInternal.cpp.i
 
-.PHONY : Shader.i
+.PHONY : MeshInternal.i
 
 # target to preprocess a source file
-Shader.cpp.i:
-	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.i
-.PHONY : Shader.cpp.i
+MeshInternal.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.i
+.PHONY : MeshInternal.cpp.i
 
-Shader.s: Shader.cpp.s
+MeshInternal.s: MeshInternal.cpp.s
 
-.PHONY : Shader.s
+.PHONY : MeshInternal.s
 
 # target to generate assembly for a file
-Shader.cpp.s:
-	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Shader.cpp.s
-.PHONY : Shader.cpp.s
+MeshInternal.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.s
+.PHONY : MeshInternal.cpp.s
+
+Texture.o: Texture.cpp.o
+
+.PHONY : Texture.o
+
+# target to build an object file
+Texture.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Texture.cpp.o
+.PHONY : Texture.cpp.o
+
+Texture.i: Texture.cpp.i
+
+.PHONY : Texture.i
+
+# target to preprocess a source file
+Texture.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Texture.cpp.i
+.PHONY : Texture.cpp.i
+
+Texture.s: Texture.cpp.s
+
+.PHONY : Texture.s
+
+# target to generate assembly for a file
+Texture.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Texture.cpp.s
+.PHONY : Texture.cpp.s
 
 VDeleter.o: VDeleter.cpp.o
 
@@ -297,9 +324,12 @@ help:
 	@echo "... Mesh.o"
 	@echo "... Mesh.i"
 	@echo "... Mesh.s"
-	@echo "... Shader.o"
-	@echo "... Shader.i"
-	@echo "... Shader.s"
+	@echo "... MeshInternal.o"
+	@echo "... MeshInternal.i"
+	@echo "... MeshInternal.s"
+	@echo "... Texture.o"
+	@echo "... Texture.i"
+	@echo "... Texture.s"
 	@echo "... VDeleter.o"
 	@echo "... VDeleter.i"
 	@echo "... VDeleter.s"

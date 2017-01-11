@@ -98,6 +98,7 @@ VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> bu
     createSurface();
     pickPhysicalDevice();
     createLogicalDevice();
+    loadModels();
     createSwapChain();
     createImageViews();
     createRenderPass();
@@ -109,7 +110,6 @@ VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> bu
     createTextureImage();
     createTextureImageView();
     createTextureSampler();
-    loadModels();
     createVertexBuffer();
     createIndexBuffer();
     createUniformBuffer();
@@ -585,11 +585,11 @@ VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> bu
 
     VkDescriptorSetLayoutBinding samplerLayoutBinding = {};
     samplerLayoutBinding.binding = 1;
-    samplerLayoutBinding.descriptorCount = 1;
     samplerLayoutBinding.descriptorType =
         VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-    samplerLayoutBinding.pImmutableSamplers = nullptr;
+    samplerLayoutBinding.descriptorCount = 1;
     samplerLayoutBinding.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT;
+    samplerLayoutBinding.pImmutableSamplers = nullptr;
 
     std::array<VkDescriptorSetLayoutBinding, 2> bindings = {uboLayoutBinding,
                                                             samplerLayoutBinding};
@@ -1109,18 +1109,16 @@ VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> bu
     }
 #else
   void VulkanApplication::loadModels() {
-    //Mesh *mesh = new Mesh(MODEL_PATH);
-    for (int i = 0; i < meshes.size(); i++) {
-      int extra = 0;
-      if (i > 0) {
-       extra += meshes[i - 1].vertices.size();
-      }
-      vertices.insert(vertices.end(), meshes[i].vertices.begin(), meshes[i].vertices.end());
-      for (int j = 0; j < meshes[i].indices.size(); i++) {
-        indices.insert(indices.end(), meshes[i].indices.begin(), meshes[i].indices.end());
-        indices.push_back(meshes[i].indices[j] + extra);
-      }
+
+    printf("Meshes.size: %d\n", inputMeshes.size());
+    for (int i = 0; i < inputMeshes.size(); i++) {
+      printf("i: %d, meshes[i].vertices.size: %d, meshes[i].indices.size: %d\n", i, inputMeshes[i].vertices.size(),
+             inputMeshes[i].indices.size());
+      vertices.insert(vertices.end(), inputMeshes[i].vertices.begin(), inputMeshes[i].vertices.end());
+      indices.insert(indices.end(), inputMeshes[i].indices.begin(), inputMeshes[i].indices.end());
     }
+    printf("vertices.size: %d, indices.size: %d\n", vertices.size(), indices.size());
+
 
     //vertices = mesh->vertices;
     //indices = mesh->indices;

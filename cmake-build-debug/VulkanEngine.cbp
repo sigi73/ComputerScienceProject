@@ -96,10 +96,16 @@
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Mesh.h">
 			<Option target="VulkanEngine"/>
 		</Unit>
-		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Shader.cpp">
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp">
 			<Option target="VulkanEngine"/>
 		</Unit>
-		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Shader.h">
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Texture.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Texture.h">
 			<Option target="VulkanEngine"/>
 		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/VDeleter.cpp">

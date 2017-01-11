@@ -18,7 +18,7 @@ link_directories("${VULKAN_SDK}/explicit_layer.d")
 
 find_package(glfw3 3.2 REQUIRED)
 
-set(SOURCE_FILES main.cpp VDeleter.cpp VDeleter.h VulkanCommon.h Shader.cpp Shader.h Mesh.cpp Mesh.h VulkanCommon.cpp VulkanApplication.cpp VulkanApplication.h)
+set(SOURCE_FILES main.cpp VDeleter.cpp VDeleter.h VulkanCommon.h Mesh.cpp Mesh.h VulkanCommon.cpp VulkanApplication.cpp VulkanApplication.h MeshInternal.cpp MeshInternal.h Texture.cpp Texture.h)
 add_executable(VulkanEngine ${SOURCE_FILES})
 target_link_libraries(VulkanEngine glfw)
 target_link_libraries(VulkanEngine vulkan)

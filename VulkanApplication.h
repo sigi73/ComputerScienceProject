@@ -16,6 +16,7 @@
 
 #include "VDeleter.h"
 #include "Mesh.h"
+#include "MeshInternal.h"
 
 class VulkanApplication {
  public:
@@ -25,6 +26,8 @@ class VulkanApplication {
  private:
   int WIDTH;
   int HEIGHT;
+
+  int loopCount = 0;
 
   //Temporary
   const std::string TEXTURE_PATH = "textures/chalet.jpg";
@@ -38,7 +41,8 @@ class VulkanApplication {
       VK_KHR_SWAPCHAIN_EXTENSION_NAME
   };
 
-  std::vector<Mesh> meshes;
+  std::vector<Mesh> inputMeshes;
+  std::vector<MeshInternal> meshes;
 
 #ifdef DEBUGGING_STATEMENTS     //Used to set defines for printing
   //diagnostic information
@@ -140,6 +144,9 @@ class VulkanApplication {
 
   void createLogicalDevice();
 
+
+  void loadModels();
+
   void createSwapChain();
   VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR> availableFormats);
   VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> availablePresentModes);
@@ -173,7 +180,6 @@ class VulkanApplication {
 
   void createTextureImageView();
   void createTextureSampler();
-  void loadModels();
 
   void createVertexBuffer();
   void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VDeleter<VkBuffer> &buffer,
