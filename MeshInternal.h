@@ -32,11 +32,14 @@ class MeshInternal {
   VDeleter<VkBuffer> uniformBuffer;
   VDeleter<VkDeviceMemory>uniformBufferMemory;
 
+  VkDescriptorSet descriptorSet;
+
   Texture texture;
 
-  MeshInternal(VDeleter<VkDevice> device, Mesh mesh);
+  MeshInternal(VDeleter<VkDevice> &device, Mesh &mesh);
 
   void updateUBO();
+
 };
 
 #endif //VULKANENGINE_MESHINTERNAL_H

@@ -1111,10 +1111,20 @@ void VulkanApplication::loadModels() {
     }
 #else
 void VulkanApplication::loadModels() {
-
   for (int i = 0; i < inputMeshes.size(); i++) {
     MeshInternal meshInternal(device, inputMeshes[i]);
     meshes.push_back(meshInternal);
+  }
+
+  for (int i = 0; i < meshes[0].vertices.size(); i++) {
+    printf("1: %f, %f, %f, 2: %f, %f, %f\n",
+           meshes[0].vertices[i].pos.x,
+           meshes[0].vertices[i].pos.y,
+           meshes[0].vertices[i].pos.z,
+           meshes[1].vertices[i].pos.x,
+           meshes[1].vertices[i].pos.y,
+           meshes[1].vertices[i].pos.z
+    );
   }
 }
 #endif
@@ -1122,59 +1132,65 @@ void VulkanApplication::loadModels() {
 
 
 void VulkanApplication::createVertexBuffer() {
-  VkDeviceSize bufferSize = sizeof(vertices[0]) * vertices.size();
-  VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory> stagingBufferMemory{device, vkFreeMemory};
+  for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+    VkDeviceSize bufferSize = sizeof(mesh->vertices[0]) * mesh->vertices.size();
+    VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
+    VDeleter<VkDeviceMemory> stagingBufferMemory{device, vkFreeMemory};
 
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
-               VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
-               stagingBuffer, stagingBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                 stagingBuffer, stagingBufferMemory);
 
 
-  void *data;
-  vkMapMemory(device, stagingBufferMemory, 0, bufferSize, 0, &data);
-  memcpy(data, vertices.data(), (size_t)bufferSize);
-  vkUnmapMemory(device, stagingBufferMemory);
+    void *data;
+    vkMapMemory(device, stagingBufferMemory, 0, bufferSize, 0, &data);
+    memcpy(data, mesh->vertices.data(), (size_t)bufferSize);
+    vkUnmapMemory(device, stagingBufferMemory);
 
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
-                   VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-               vertexBuffer, vertexBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                     VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+                 mesh->vertexBuffer, mesh->vertexBufferMemory);
 
-  copyBuffer(stagingBuffer, vertexBuffer, bufferSize);
+    copyBuffer(stagingBuffer, mesh->vertexBuffer, bufferSize);
+  }
 }
 
 void VulkanApplication::createIndexBuffer() {
-  VkDeviceSize bufferSize = sizeof(indices[0]) * indices.size();
-  VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory> stagingBufferMemory{device, vkFreeMemory};
+  for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+    VkDeviceSize bufferSize = sizeof(mesh->indices[0]) * mesh->indices.size();
+    VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
+    VDeleter<VkDeviceMemory> stagingBufferMemory{device, vkFreeMemory};
 
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
-               VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
-               stagingBuffer, stagingBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                 stagingBuffer, stagingBufferMemory);
 
 
-  void *data;
-  vkMapMemory(device, stagingBufferMemory, 0, bufferSize, 0, &data);
-  memcpy(data, indices.data(), (size_t)bufferSize);
-  vkUnmapMemory(device, stagingBufferMemory);
+    void *data;
+    vkMapMemory(device, stagingBufferMemory, 0, bufferSize, 0, &data);
+    memcpy(data, mesh->indices.data(), (size_t)bufferSize);
+    vkUnmapMemory(device, stagingBufferMemory);
 
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
-                   VK_BUFFER_USAGE_INDEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-               indexBuffer, indexBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                     VK_BUFFER_USAGE_INDEX_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+                 mesh->indexBuffer, mesh->indexBufferMemory);
 
-  copyBuffer(stagingBuffer, indexBuffer, bufferSize);
+    copyBuffer(stagingBuffer, mesh->indexBuffer, bufferSize);
+  }
 }
 
 void VulkanApplication::createUniformBuffer() {
-  VkDeviceSize bufferSize = sizeof(UniformBufferObject);
+  for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+    VkDeviceSize bufferSize = sizeof(UniformBufferObject);
 
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
-               VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT |
-                   VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, uniformStagingBuffer,
-               uniformStagingBufferMemory);
-  createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
-                   VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-               uniformBuffer, uniformBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT |
+                     VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, mesh->uniformStagingBuffer,
+                 mesh->uniformStagingBufferMemory);
+    createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
+                     VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+                 mesh->uniformBuffer, mesh->uniformBufferMemory);
+  }
 }
 
 
@@ -1289,15 +1305,15 @@ uint32_t VulkanApplication::findMemoryType(uint32_t typeFilter, VkMemoryProperty
 void VulkanApplication::createDescriptorPool() {
   std::array<VkDescriptorPoolSize, 2> poolSizes = {};
   poolSizes[0].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  poolSizes[0].descriptorCount = 1;
+  poolSizes[0].descriptorCount = meshes.size() + 1;
   poolSizes[1].type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-  poolSizes[1].descriptorCount = 1;
+  poolSizes[1].descriptorCount = meshes.size() + 1;
 
   VkDescriptorPoolCreateInfo poolInfo = {};
   poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
   poolInfo.poolSizeCount = poolSizes.size();
   poolInfo.pPoolSizes = poolSizes.data();
-  poolInfo.maxSets = 1;
+  poolInfo.maxSets = meshes.size() + 1;
 
   if (vkCreateDescriptorPool(device, &poolInfo, nullptr,
                              descriptorPool.replace()) != VK_SUCCESS) {
@@ -1313,41 +1329,43 @@ void VulkanApplication::createDescriptorSet() {
   allocInfo.descriptorSetCount = 1;
   allocInfo.pSetLayouts = layouts;
 
-  if (vkAllocateDescriptorSets(device, &allocInfo, &descriptorSet) !=
-      VK_SUCCESS) {
-    throw std::runtime_error("Failed to allocate descriptor set");
+  for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+    if (vkAllocateDescriptorSets(device, &allocInfo, &mesh->descriptorSet) !=
+        VK_SUCCESS) {
+      throw std::runtime_error("Failed to allocate descriptor set");
+    }
+
+    VkDescriptorBufferInfo bufferInfo = {};
+    bufferInfo.buffer = mesh->uniformBuffer;
+    bufferInfo.offset = 0;
+    bufferInfo.range = sizeof(UniformBufferObject);
+
+    VkDescriptorImageInfo imageInfo = {};
+    imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+    imageInfo.imageView = textureImageView;
+    imageInfo.sampler = textureSampler;
+
+    std::array<VkWriteDescriptorSet, 2> descriptorWrites = {};
+
+    descriptorWrites[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    descriptorWrites[0].dstSet = mesh->descriptorSet;
+    descriptorWrites[0].dstBinding = 0;
+    descriptorWrites[0].dstArrayElement = 0;
+    descriptorWrites[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+    descriptorWrites[0].descriptorCount = 1;
+    descriptorWrites[0].pBufferInfo = &bufferInfo;
+
+    descriptorWrites[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+    descriptorWrites[1].dstSet = mesh->descriptorSet;
+    descriptorWrites[1].dstBinding = 1;
+    descriptorWrites[1].dstArrayElement = 0;
+    descriptorWrites[1].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+    descriptorWrites[1].descriptorCount = 1;
+    descriptorWrites[1].pImageInfo = &imageInfo;
+
+    vkUpdateDescriptorSets(device, descriptorWrites.size(),
+                           descriptorWrites.data(), 0, nullptr);
   }
-
-  VkDescriptorBufferInfo bufferInfo = {};
-  bufferInfo.buffer = uniformBuffer;
-  bufferInfo.offset = 0;
-  bufferInfo.range = sizeof(UniformBufferObject);
-
-  VkDescriptorImageInfo imageInfo = {};
-  imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-  imageInfo.imageView = textureImageView;
-  imageInfo.sampler = textureSampler;
-
-  std::array<VkWriteDescriptorSet, 2> descriptorWrites = {};
-
-  descriptorWrites[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  descriptorWrites[0].dstSet = descriptorSet;
-  descriptorWrites[0].dstBinding = 0;
-  descriptorWrites[0].dstArrayElement = 0;
-  descriptorWrites[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-  descriptorWrites[0].descriptorCount = 1;
-  descriptorWrites[0].pBufferInfo = &bufferInfo;
-
-  descriptorWrites[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-  descriptorWrites[1].dstSet = descriptorSet;
-  descriptorWrites[1].dstBinding = 1;
-  descriptorWrites[1].dstArrayElement = 0;
-  descriptorWrites[1].descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-  descriptorWrites[1].descriptorCount = 1;
-  descriptorWrites[1].pImageInfo = &imageInfo;
-
-  vkUpdateDescriptorSets(device, descriptorWrites.size(),
-                         descriptorWrites.data(), 0, nullptr);
 }
 
 void VulkanApplication::createCommandBuffers() {
@@ -1397,18 +1415,22 @@ void VulkanApplication::createCommandBuffers() {
     vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
                       graphicsPipeline);
 
-    VkBuffer vertexBuffers[] = {vertexBuffer};
-    VkDeviceSize offsets[] = {0};
-    vkCmdBindVertexBuffers(commandBuffers[i], 0, 1, vertexBuffers, offsets);
+    int j = 0;
+    for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+      printf("i: %d\n", j);
+      VkBuffer vertexBuffers[] = {mesh->vertexBuffer};
+      VkDeviceSize offsets[] = {0};
+      vkCmdBindVertexBuffers(commandBuffers[i], 0, 1, vertexBuffers, offsets);
 
-    vkCmdBindIndexBuffer(commandBuffers[i], indexBuffer, 0,
-                         VK_INDEX_TYPE_UINT32);
+      vkCmdBindIndexBuffer(commandBuffers[i], mesh->indexBuffer, 0,
+                           VK_INDEX_TYPE_UINT32);
 
-    vkCmdBindDescriptorSets(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
-                            pipelineLayout, 0, 1, &descriptorSet, 0, nullptr);
+      vkCmdBindDescriptorSets(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
+                              pipelineLayout, 0, 1, &mesh->descriptorSet, 0, nullptr);
 
-    vkCmdDrawIndexed(commandBuffers[i], indices.size(), 1, 0, 0, 0);
-
+      vkCmdDrawIndexed(commandBuffers[i], mesh->indices.size(), 1, 0, 0, 1);
+      j++;
+    }
     vkCmdEndRenderPass(commandBuffers[i]);
 
     if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
@@ -1457,12 +1479,15 @@ void VulkanApplication::updateUniformBuffer() {
 
   ubo.proj[1][1] *= -1;
 
-  void *data;
-  vkMapMemory(device, uniformStagingBufferMemory, 0, sizeof(ubo), 0, &data);
-  memcpy(data, &ubo, sizeof(ubo));
-  vkUnmapMemory(device, uniformStagingBufferMemory);
+  for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
 
-  copyBuffer(uniformStagingBuffer, uniformBuffer, sizeof(ubo));
+    void *data;
+    vkMapMemory(device, mesh->uniformStagingBufferMemory, 0, sizeof(ubo), 0, &data);
+    memcpy(data, &ubo, sizeof(ubo));
+    vkUnmapMemory(device, mesh->uniformStagingBufferMemory);
+
+    copyBuffer(mesh->uniformStagingBuffer, mesh->uniformBuffer, sizeof(ubo));
+  }
 }
 
 void VulkanApplication::drawFrame() {

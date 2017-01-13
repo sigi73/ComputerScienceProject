@@ -7,6 +7,7 @@ CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../Packages/glfw/include/GLFW/glfw3.h
 CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../Packages/tinyobjloader/tiny_obj_loader.h
 CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../Mesh.cpp
 CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../Mesh.h
+CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../Texture.h
 CMakeFiles/VulkanEngine.dir/Mesh.cpp.o: ../VulkanCommon.h
 
 CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o: ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vk_platform.h

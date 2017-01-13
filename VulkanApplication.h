@@ -40,9 +40,8 @@ class VulkanApplication {
       VK_KHR_SWAPCHAIN_EXTENSION_NAME
   };
 
-  std::vector<Mesh> inputMeshes;
-  std::vector<MeshInternal> meshes;
 
+#define DEBUGGING_STATEMENTS
 #ifdef DEBUGGING_STATEMENTS     //Used to set defines for printing
   //diagnostic information
 #define ENUMERATE_EXTENSIONS
@@ -61,6 +60,10 @@ class VulkanApplication {
 
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
   VDeleter<VkDevice> device{vkDestroyDevice};
+
+
+  std::vector<Mesh> inputMeshes;
+  std::vector<MeshInternal> meshes;
 
   VkQueue graphicsQueue;
   VkQueue presentQueue;
@@ -91,6 +94,7 @@ class VulkanApplication {
   VDeleter<VkImage> textureImage{device, vkDestroyImage};
   VDeleter<VkDeviceMemory> textureImageMemory{device, vkFreeMemory};
 
+  /*
   std::vector<Vertex> vertices;
   std::vector<uint32_t> indices;
 
@@ -103,9 +107,10 @@ class VulkanApplication {
   VDeleter<VkDeviceMemory> uniformStagingBufferMemory{device, vkFreeMemory};
   VDeleter<VkBuffer> uniformBuffer{device, vkDestroyBuffer};
   VDeleter<VkDeviceMemory>uniformBufferMemory{device, vkFreeMemory};
+  */
 
   VDeleter<VkDescriptorPool> descriptorPool{device, vkDestroyDescriptorPool};
-  VkDescriptorSet descriptorSet;
+  //VkDescriptorSet descriptorSet;
 
   VDeleter<VkImageView> textureImageView{device, vkDestroyImageView};
 

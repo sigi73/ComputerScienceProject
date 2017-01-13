@@ -13,7 +13,7 @@ int main() {
 
   Mesh mesh2(HOUSE_PATH);
   //mesh2.translate(glm::vec3(100, 100, 100));
-  mesh2.translate(glm::vec3(0, .5, .5));
+  mesh2.translate(glm::vec3(0, 1, .5));
 
 #if 0
   for (int i = 0; i < mesh.vertices.size(); i++) {
@@ -23,10 +23,11 @@ int main() {
     printf("2: %f, %f, %f\n", point2.x, point2.y, point2.z);
   }
 #endif
-
+#if 0
   for (int i = 0; i < mesh2.indices.size(); i++) {
     mesh2.indices[i] += mesh.vertices.size();
   }
+#endif
 
   meshes.push_back(mesh2);
 

@@ -153,6 +153,8 @@ unordered_map
 -
 glm/glm.hpp
 -
+Texture.h
+/home/siddharth/ClionProjects/VulkanEngine/Texture.h
 
 /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp
 MeshInternal.h
