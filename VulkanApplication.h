@@ -19,7 +19,7 @@
 
 class VulkanApplication {
  public:
-  VulkanApplication(int window_width, int window_height, std::vector<Mesh> built_meshes);
+  VulkanApplication(int window_width, int window_height, std::vector<Mesh> inputMeshes, std::vector<Texture> &inputTextures);
   void run();
 
  private:

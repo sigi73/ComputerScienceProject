@@ -32,10 +32,10 @@
 #include <GLFW/glfw3.h>
 
 
-VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> built_meshes) {
+VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> inputMeshes, std::vector<Texture> &inputTextures) {
   WIDTH = width;
   HEIGHT = height;
-  inputMeshes = built_meshes;
+  inputMeshes = inputMeshes;
 }
 
 

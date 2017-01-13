@@ -16,7 +16,9 @@ Mesh::Mesh() {
 
 }
 
-Mesh::Mesh(std::string path) {
+Mesh::Mesh(std::string path, Texture &inputTexture) {
+  texture = inputTexture;
+
   tinyobj::attrib_t attrib;
   std::vector<tinyobj::shape_t> shapes;
   std::vector<tinyobj::material_t> materials;

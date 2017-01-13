@@ -23,7 +23,7 @@ class Mesh {
   Texture texture;
 
   Mesh();
-  Mesh(std::string path);
+  Mesh(std::string path, Texture &texture);
 
   void translate(glm::vec3 vector);
 };
