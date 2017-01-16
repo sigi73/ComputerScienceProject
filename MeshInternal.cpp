@@ -13,10 +13,11 @@ MeshInternal::MeshInternal(VDeleter<VkDevice> &device, Mesh &mesh) :
   uniformStagingBufferMemory{device, vkFreeMemory},
   uniformBuffer{device, vkDestroyBuffer},
   uniformBufferMemory{device, vkFreeMemory}
+
 {
-  texture = mesh.texture;
   vertices.insert(vertices.end(), mesh.vertices.begin(), mesh.vertices.end());
   indices.insert(indices.end(), mesh.indices.begin(), mesh.indices.end());
+  textureIndex = mesh.textureIndex;
 }
 
 void MeshInternal::updateUBO() {

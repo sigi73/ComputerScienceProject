@@ -1,3 +1,5 @@
+#if 0
+
 #ifndef GLFW_IMPLEMENTATION
 #define GLFW_IMPLEMENTATION
 #define GLFW_INCLUDE_VULKAN
@@ -1712,3 +1714,4 @@ int main() {
 
     //return EXIT_SUCCESS;
 }
+#endif

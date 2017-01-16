@@ -204,6 +204,33 @@ Texture.cpp.s:
 	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/Texture.cpp.s
 .PHONY : Texture.cpp.s
 
+TextureInternal.o: TextureInternal.cpp.o
+
+.PHONY : TextureInternal.o
+
+# target to build an object file
+TextureInternal.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o
+.PHONY : TextureInternal.cpp.o
+
+TextureInternal.i: TextureInternal.cpp.i
+
+.PHONY : TextureInternal.i
+
+# target to preprocess a source file
+TextureInternal.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.i
+.PHONY : TextureInternal.cpp.i
+
+TextureInternal.s: TextureInternal.cpp.s
+
+.PHONY : TextureInternal.s
+
+# target to generate assembly for a file
+TextureInternal.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.s
+.PHONY : TextureInternal.cpp.s
+
 VDeleter.o: VDeleter.cpp.o
 
 .PHONY : VDeleter.o
@@ -330,6 +357,9 @@ help:
 	@echo "... Texture.o"
 	@echo "... Texture.i"
 	@echo "... Texture.s"
+	@echo "... TextureInternal.o"
+	@echo "... TextureInternal.i"
+	@echo "... TextureInternal.s"
 	@echo "... VDeleter.o"
 	@echo "... VDeleter.i"
 	@echo "... VDeleter.s"

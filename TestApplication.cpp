@@ -1,6 +1,7 @@
 //
 // Created by siddharth on 1/4/17.
 //
+#if 0
 
 #include "TestApplication.h"
 
@@ -1602,3 +1603,4 @@ void TestApplication::initWindow() {
   }
 
 
+#endif

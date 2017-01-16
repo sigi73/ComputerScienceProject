@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/siddharth/ClionProjects/VulkanEngine/Mesh.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Mesh.cpp.o"
   "/home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o"
   "/home/siddharth/ClionProjects/VulkanEngine/Texture.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Texture.cpp.o"
+  "/home/siddharth/ClionProjects/VulkanEngine/TextureInternal.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o"
   "/home/siddharth/ClionProjects/VulkanEngine/VDeleter.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VDeleter.cpp.o"
   "/home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o"
   "/home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.cpp" "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.o"

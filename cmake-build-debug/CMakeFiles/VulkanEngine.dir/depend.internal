@@ -8,7 +8,6 @@ CMakeFiles/VulkanEngine.dir/Mesh.cpp.o
  ../Packages/tinyobjloader/tiny_obj_loader.h
  /home/siddharth/ClionProjects/VulkanEngine/Mesh.cpp
  /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
- /home/siddharth/ClionProjects/VulkanEngine/Texture.h
  /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
 CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o
  ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vk_platform.h
@@ -17,12 +16,21 @@ CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o
  /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
  /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp
  /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
- /home/siddharth/ClionProjects/VulkanEngine/Texture.h
  /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
  /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
 CMakeFiles/VulkanEngine.dir/Texture.cpp.o
+ ../Packages/stb/stb_image.h
  /home/siddharth/ClionProjects/VulkanEngine/Texture.cpp
  /home/siddharth/ClionProjects/VulkanEngine/Texture.h
+CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o
+ ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vk_platform.h
+ ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vulkan.h
+ ../Packages/glfw/include/GLFW/glfw3.h
+ /home/siddharth/ClionProjects/VulkanEngine/Texture.h
+ /home/siddharth/ClionProjects/VulkanEngine/TextureInternal.cpp
+ /home/siddharth/ClionProjects/VulkanEngine/TextureInternal.h
+ /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
+ /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
 CMakeFiles/VulkanEngine.dir/VDeleter.cpp.o
  ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vk_platform.h
  ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vulkan.h
@@ -32,10 +40,10 @@ CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o
  ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vk_platform.h
  ../Packages/VulkanSDK/1.0.30.0/x86_64/include/vulkan/vulkan.h
  ../Packages/glfw/include/GLFW/glfw3.h
- ../Packages/stb/stb_image.h
  /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
  /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
  /home/siddharth/ClionProjects/VulkanEngine/Texture.h
+ /home/siddharth/ClionProjects/VulkanEngine/TextureInternal.h
  /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
  /home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.cpp
  /home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h
@@ -53,6 +61,7 @@ CMakeFiles/VulkanEngine.dir/main.cpp.o
  /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
  /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.h
  /home/siddharth/ClionProjects/VulkanEngine/Texture.h
+ /home/siddharth/ClionProjects/VulkanEngine/TextureInternal.h
  /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
  /home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h
  /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h

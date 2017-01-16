@@ -14,12 +14,13 @@
 #endif
 
 #include "VDeleter.h"
-#include "Mesh.h"
+//#include "Mesh.h"
 #include "MeshInternal.h"
+#include "TextureInternal.h"
 
 class VulkanApplication {
  public:
-  VulkanApplication(int window_width, int window_height, std::vector<Mesh> inputMeshes, std::vector<Texture> &inputTextures);
+  VulkanApplication(int window_width, int window_height, std::vector<Mesh> inMeshes, std::vector<Texture> inTextures);
   void run();
 
  private:
@@ -65,6 +66,9 @@ class VulkanApplication {
   std::vector<Mesh> inputMeshes;
   std::vector<MeshInternal> meshes;
 
+  std::vector<Texture> inputTextures;
+  std::vector<TextureInternal> textures;
+
   VkQueue graphicsQueue;
   VkQueue presentQueue;
 
@@ -91,8 +95,8 @@ class VulkanApplication {
   VDeleter<VkSemaphore> imageAvailableSemaphore{device, vkDestroySemaphore};
   VDeleter<VkSemaphore> renderFinishedSemaphore{device, vkDestroySemaphore};
 
-  VDeleter<VkImage> textureImage{device, vkDestroyImage};
-  VDeleter<VkDeviceMemory> textureImageMemory{device, vkFreeMemory};
+  //VDeleter<VkImage> textureImage{device, vkDestroyImage};
+  //VDeleter<VkDeviceMemory> textureImageMemory{device, vkFreeMemory};
 
   /*
   std::vector<Vertex> vertices;
@@ -112,9 +116,9 @@ class VulkanApplication {
   VDeleter<VkDescriptorPool> descriptorPool{device, vkDestroyDescriptorPool};
   //VkDescriptorSet descriptorSet;
 
-  VDeleter<VkImageView> textureImageView{device, vkDestroyImageView};
+  //VDeleter<VkImageView> textureImageView{device, vkDestroyImageView};
 
-  VDeleter<VkSampler> textureSampler{device, vkDestroySampler};
+  //VDeleter<VkSampler> textureSampler{device, vkDestroySampler};
 
   VDeleter<VkImage> depthImage{device, vkDestroyImage};
   VDeleter<VkDeviceMemory> depthImageMemory{device, vkFreeMemory};

@@ -10,7 +10,6 @@
 #include <string>
 #include <unordered_map>
 #include <glm/glm.hpp>
-#include "Texture.h"
 
 struct Vertex;
 
@@ -20,10 +19,10 @@ class Mesh {
   std::vector<Vertex> vertices;
   std::vector<uint32_t> indices;
 
-  Texture texture;
+  int textureIndex;
 
   Mesh();
-  Mesh(std::string path, Texture &texture);
+  Mesh(std::string path, int inputTextureIndex);
 
   void translate(glm::vec3 vector);
 };

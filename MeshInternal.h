@@ -14,8 +14,7 @@
 
 #include "Mesh.h"
 #include "VDeleter.h"
-#include "Texture.h"
-
+//#include "TextureInternal.h"
 
 class MeshInternal {
  public:
@@ -34,7 +33,8 @@ class MeshInternal {
 
   VkDescriptorSet descriptorSet;
 
-  Texture texture;
+  //TextureInternal *texture;
+  int textureIndex;
 
   MeshInternal(VDeleter<VkDevice> &device, Mesh &mesh);
 

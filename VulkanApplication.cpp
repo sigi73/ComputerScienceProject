@@ -17,25 +17,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/hash.hpp>
 
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
-#endif
-
 
 #include <fstream>
 #include <set>
 #include <chrono>
-#include <unordered_map>
+#include <cstring>
 
-
-#include <GLFW/glfw3.h>
-
-
-VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> inputMeshes, std::vector<Texture> &inputTextures) {
+VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> inMeshes, std::vector<Texture> inTextures) {
   WIDTH = width;
   HEIGHT = height;
-  inputMeshes = inputMeshes;
+  inputMeshes = inMeshes;
+  inputTextures = inTextures;
 }
 
 
@@ -854,6 +846,7 @@ bool VulkanApplication::hasStencilComponent(VkFormat format) {
 
 
 void VulkanApplication::createTextureImage() {
+  /*
   int texWidth, texHeight, texChannels;
   stbi_uc *pixels = stbi_load(TEXTURE_PATH.c_str(), &texWidth, &texHeight,
                               &texChannels, STBI_rgb_alpha);
@@ -862,49 +855,56 @@ void VulkanApplication::createTextureImage() {
   if (!pixels) {
     throw std::runtime_error("Failed to load texture image");
   }
+   */
 
-  VDeleter<VkImage> stagingImage{device, vkDestroyImage};
-  VDeleter<VkDeviceMemory> stagingImageMemory{device, vkFreeMemory};
+  for (auto texture = textures.begin(); texture != textures.end(); ++texture) {
 
-  createImage(texWidth, texHeight, VK_FORMAT_R8G8B8A8_UNORM,
-              VK_IMAGE_TILING_LINEAR, VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
-              VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
-              stagingImage, stagingImageMemory);
+    VDeleter<VkImage> stagingImage{device, vkDestroyImage};
+    VDeleter<VkDeviceMemory> stagingImageMemory{device, vkFreeMemory};
 
+    createImage(texture->baseTexture.texWidth, texture->baseTexture.texHeight, VK_FORMAT_R8G8B8A8_UNORM,
+                VK_IMAGE_TILING_LINEAR, VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                stagingImage, stagingImageMemory);
 
-  void *data;
-  vkMapMemory(device, stagingImageMemory, 0, imageSize, 0, &data);
-  memcpy(data, pixels, (size_t)imageSize);
-  vkUnmapMemory(device, stagingImageMemory);
+    VkDeviceSize imageSize = texture->baseTexture.texWidth * texture->baseTexture.texHeight * 4;
+    void *data;
+    vkMapMemory(device, stagingImageMemory, 0, imageSize, 0, &data);
+    memcpy(data, texture->baseTexture.pixels, (size_t) imageSize);
+    vkUnmapMemory(device, stagingImageMemory);
 
-  stbi_image_free(pixels);
+    //stbi_image_free(texture->baseTexture.pixels);
 
-  createImage(
-      texWidth, texHeight,
-      VK_FORMAT_R8G8B8A8_UNORM,
-      VK_IMAGE_TILING_OPTIMAL,
-      VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT,
-      VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
-      textureImage,
-      textureImageMemory
-  );
+    createImage(
+        texture->baseTexture.texWidth,
+        texture->baseTexture.texHeight,
+        VK_FORMAT_R8G8B8A8_UNORM,
+        VK_IMAGE_TILING_OPTIMAL,
+        VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT,
+        VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+        texture->textureImage,
+        texture->textureImageMemory
+    );
 
-  transitionImageLayout(stagingImage, VK_FORMAT_R8G8B8A8_UNORM,
-                        VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
-  transitionImageLayout(textureImage, VK_FORMAT_R8G8B8A8_UNORM,
-                        VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-  copyImage(stagingImage, textureImage, texWidth, texHeight);
+    transitionImageLayout(stagingImage, VK_FORMAT_R8G8B8A8_UNORM,
+                          VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
+    transitionImageLayout(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
+                          VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+    copyImage(stagingImage, texture->textureImage, texture->baseTexture.texWidth, texture->baseTexture.texHeight);
 
-  transitionImageLayout(textureImage, VK_FORMAT_R8G8B8A8_UNORM,
-                        VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-                        VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
-
+    transitionImageLayout(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
+                          VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                          VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+  }
 
 }
 
 void VulkanApplication::createTextureImageView() {
-  createImageView(textureImage, VK_FORMAT_R8G8B8A8_UNORM,
-                  VK_IMAGE_ASPECT_COLOR_BIT, textureImageView);
+
+  for (auto texture = textures.begin(); texture != textures.end(); ++texture) {
+    createImageView(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
+                    VK_IMAGE_ASPECT_COLOR_BIT, texture->textureImageView);
+  }
 }
 
 void VulkanApplication::createTextureSampler() {
@@ -926,9 +926,11 @@ void VulkanApplication::createTextureSampler() {
   samplerInfo.minLod = 0.0f;
   samplerInfo.maxLod = 0.0f;
 
-  if (vkCreateSampler(device, &samplerInfo, nullptr, textureSampler.replace())
-      != VK_SUCCESS) {
-    throw std::runtime_error("Failed to create texture sampler");
+  for (auto texture = textures.begin(); texture != textures.end(); ++texture) {
+    if (vkCreateSampler(device, &samplerInfo, nullptr, texture->textureSampler.replace())
+        != VK_SUCCESS) {
+      throw std::runtime_error("Failed to create texture sampler");
+    }
   }
 
 }
@@ -1111,11 +1113,20 @@ void VulkanApplication::loadModels() {
     }
 #else
 void VulkanApplication::loadModels() {
+  for (int i = 0; i < inputTextures.size(); i++) {
+    TextureInternal textureInternal(device, inputTextures[i]);
+    textures.push_back(textureInternal);
+  }
   for (int i = 0; i < inputMeshes.size(); i++) {
     MeshInternal meshInternal(device, inputMeshes[i]);
+    //meshInternal.texture = &textures[inputMeshes[i].textureIndex];
     meshes.push_back(meshInternal);
   }
 
+  printf("textures.size(): %lu\n", textures.size());
+  printf("inputTextures.size(): %lu\n", inputTextures.size());
+
+  /*
   for (int i = 0; i < meshes[0].vertices.size(); i++) {
     printf("1: %f, %f, %f, 2: %f, %f, %f\n",
            meshes[0].vertices[i].pos.x,
@@ -1126,6 +1137,7 @@ void VulkanApplication::loadModels() {
            meshes[1].vertices[i].pos.z
     );
   }
+   */
 }
 #endif
 
@@ -1342,8 +1354,13 @@ void VulkanApplication::createDescriptorSet() {
 
     VkDescriptorImageInfo imageInfo = {};
     imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-    imageInfo.imageView = textureImageView;
-    imageInfo.sampler = textureSampler;
+    //imageInfo.imageView = textureImageView;
+    //imageInfo.sampler = textureSampler;
+    //imageInfo.imageView = mesh->texture->textureImageView;
+    //imageInfo.sampler = mesh->texture->textureSampler;
+    imageInfo.imageView = textures[mesh->textureIndex].textureImageView;
+    imageInfo.sampler = textures[mesh->textureIndex].textureSampler;
+
 
     std::array<VkWriteDescriptorSet, 2> descriptorWrites = {};
 
