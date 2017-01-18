@@ -20,9 +20,9 @@ class TextureInternal {
   VDeleter<VkImageView> textureImageView;
   VDeleter<VkSampler> textureSampler;
 
-  Texture baseTexture;
+  Texture *baseTexture;
 
-  TextureInternal(VDeleter<VkDevice> &device, Texture &inTexture);
+  TextureInternal(VDeleter<VkDevice> &device, Texture *inTexture);
 };
 
 #endif //VULKANENGINE_TEXTUREINTERNAL_H

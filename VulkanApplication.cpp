@@ -16,6 +16,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/hash.hpp>
+#include <glm/ext.hpp>
 
 
 #include <fstream>
@@ -23,11 +24,13 @@
 #include <chrono>
 #include <cstring>
 
-VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh> inMeshes, std::vector<Texture> inTextures) {
+VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh*> inMeshes, std::vector<Texture*> inTextures, glm::mat4 *cameraTransformPointer, GLFWwindow *inUserWindow, void (*loop)(float)) {
   WIDTH = width;
   HEIGHT = height;
   inputMeshes = inMeshes;
   inputTextures = inTextures;
+  userLoop = loop;
+  cameraTransform = cameraTransformPointer;
 }
 
 
@@ -50,13 +53,10 @@ void VulkanApplication::initWindow() {
 
   //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-  dragCursor = glfwCreateStandardCursor(GLFW_HAND_CURSOR);
   standardCursor = glfwCreateStandardCursor(GLFW_ARROW_CURSOR);
 
   glfwSetCursor(window, standardCursor);
 
-  glfwSetCursorPosCallback(window, cursor_pos_callback);
-  glfwSetMouseButtonCallback(window, mouse_button_callback);
 }
 
 void VulkanApplication::onWindowResized(GLFWwindow *window, int width, int height) {
@@ -117,6 +117,7 @@ void VulkanApplication::mainLoop() {
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
 
+    /*
     if (leftDown) {
       double xpos, ypos;
       glfwGetCursorPos(window, &xpos, &ypos);
@@ -130,9 +131,21 @@ void VulkanApplication::mainLoop() {
 
       //printf("Model Rotation: %f", modelRotation);
     }
+    */
 
+
+    long currentTime = std::chrono::duration_cast< std::chrono::milliseconds > (
+        std::chrono::system_clock::now().time_since_epoch()
+    ).count();
+
+    long deltaTime = currentTime - lastTime;
+    float deltaSeconds = deltaTime / 1000.0f;
+    //printf("deltaTime: %ld, deltaSeconds: %f\n", deltaTime, deltaSeconds);
+
+    (*userLoop)(deltaSeconds);
     updateUniformBuffer();
     drawFrame();
+    lastTime = currentTime;
   }
   vkDeviceWaitIdle(device);
 }
@@ -862,22 +875,22 @@ void VulkanApplication::createTextureImage() {
     VDeleter<VkImage> stagingImage{device, vkDestroyImage};
     VDeleter<VkDeviceMemory> stagingImageMemory{device, vkFreeMemory};
 
-    createImage(texture->baseTexture.texWidth, texture->baseTexture.texHeight, VK_FORMAT_R8G8B8A8_UNORM,
+    createImage(texture->baseTexture->texWidth, texture->baseTexture->texHeight, VK_FORMAT_R8G8B8A8_UNORM,
                 VK_IMAGE_TILING_LINEAR, VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
                 stagingImage, stagingImageMemory);
 
-    VkDeviceSize imageSize = texture->baseTexture.texWidth * texture->baseTexture.texHeight * 4;
+    VkDeviceSize imageSize = texture->baseTexture->texWidth * texture->baseTexture->texHeight * 4;
     void *data;
     vkMapMemory(device, stagingImageMemory, 0, imageSize, 0, &data);
-    memcpy(data, texture->baseTexture.pixels, (size_t) imageSize);
+    memcpy(data, texture->baseTexture->pixels, (size_t) imageSize);
     vkUnmapMemory(device, stagingImageMemory);
 
     //stbi_image_free(texture->baseTexture.pixels);
 
     createImage(
-        texture->baseTexture.texWidth,
-        texture->baseTexture.texHeight,
+        texture->baseTexture->texWidth,
+        texture->baseTexture->texHeight,
         VK_FORMAT_R8G8B8A8_UNORM,
         VK_IMAGE_TILING_OPTIMAL,
         VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT,
@@ -890,7 +903,7 @@ void VulkanApplication::createTextureImage() {
                           VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL);
     transitionImageLayout(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
                           VK_IMAGE_LAYOUT_PREINITIALIZED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
-    copyImage(stagingImage, texture->textureImage, texture->baseTexture.texWidth, texture->baseTexture.texHeight);
+    copyImage(stagingImage, texture->textureImage, texture->baseTexture->texWidth, texture->baseTexture->texHeight);
 
     transitionImageLayout(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
                           VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
@@ -1122,6 +1135,7 @@ void VulkanApplication::loadModels() {
     //meshInternal.texture = &textures[inputMeshes[i].textureIndex];
     meshes.push_back(meshInternal);
   }
+
 
   printf("textures.size(): %lu\n", textures.size());
   printf("inputTextures.size(): %lu\n", inputTextures.size());
@@ -1358,8 +1372,8 @@ void VulkanApplication::createDescriptorSet() {
     //imageInfo.sampler = textureSampler;
     //imageInfo.imageView = mesh->texture->textureImageView;
     //imageInfo.sampler = mesh->texture->textureSampler;
-    imageInfo.imageView = textures[mesh->textureIndex].textureImageView;
-    imageInfo.sampler = textures[mesh->textureIndex].textureSampler;
+    imageInfo.imageView = textures[mesh->baseMesh->textureIndex].textureImageView;
+    imageInfo.sampler = textures[mesh->baseMesh->textureIndex].textureSampler;
 
 
     std::array<VkWriteDescriptorSet, 2> descriptorWrites = {};
@@ -1478,7 +1492,7 @@ void VulkanApplication::updateUniformBuffer() {
       - startTime).count() / 1000.0f;
 
   UniformBufferObject ubo = {};
-  ubo.model = glm::rotate(glm::mat4(), time * glm::radians(90.0f), glm::vec3(
+  ubo.model = glm::rotate(glm::mat4(), time * glm::radians(90.0f), glm::vec3
       0.0f, 0.0f, 1.0f));
   ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f,
       0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
@@ -1487,16 +1501,15 @@ void VulkanApplication::updateUniformBuffer() {
 
   ubo.proj[1][1] *= -1;
   */
-  UniformBufferObject ubo = {};
-  ubo.model = glm::rotate(glm::mat4(), modelRotation, glm::vec3(0.0f, 0.0f, 1.0f));
-  ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f,
-                                                                0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-  ubo.proj = glm::perspective(glm::radians(45.0f), swapChainExtent.width /
-      (float) swapChainExtent.height, 0.1f, 10.0f);
-
-  ubo.proj[1][1] *= -1;
-
   for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
+    UniformBufferObject ubo = {};
+    ubo.model = mesh->baseMesh->transform;
+    //ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+    ubo.view = *cameraTransform;
+    ubo.proj = glm::perspective(glm::radians(45.0f), swapChainExtent.width /
+        (float) swapChainExtent.height, 0.1f, 10.0f);
+
+    ubo.proj[1][1] *= -1;
 
     void *data;
     vkMapMemory(device, mesh->uniformStagingBufferMemory, 0, sizeof(ubo), 0, &data);

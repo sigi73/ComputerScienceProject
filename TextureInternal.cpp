@@ -4,7 +4,7 @@
 
 #include "TextureInternal.h"
 
-TextureInternal::TextureInternal(VDeleter<VkDevice> &device, Texture &inTexture) :
+TextureInternal::TextureInternal(VDeleter<VkDevice> &device, Texture *inTexture) :
   textureImage{device, vkDestroyImage},
   textureImageMemory{device, vkFreeMemory},
   textureImageView{device, vkDestroyImageView},

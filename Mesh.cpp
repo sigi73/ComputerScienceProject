@@ -12,11 +12,8 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-Mesh::Mesh() {
-
-}
-
-Mesh::Mesh(std::string path, int inputTextureIndex) {
+Mesh::Mesh(std::string path, int inputTextureIndex)
+{
   textureIndex = inputTextureIndex;
   tinyobj::attrib_t attrib;
   std::vector<tinyobj::shape_t> shapes;

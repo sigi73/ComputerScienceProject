@@ -34,12 +34,12 @@ class MeshInternal {
   VkDescriptorSet descriptorSet;
 
   //TextureInternal *texture;
-  int textureIndex;
+  //int textureIndex;
 
-  MeshInternal(VDeleter<VkDevice> &device, Mesh &mesh);
+  Mesh *baseMesh;
 
-  void updateUBO();
-
+  MeshInternal(VDeleter<VkDevice> &device, Mesh *mesh);
 };
+
 
 #endif //VULKANENGINE_MESHINTERNAL_H

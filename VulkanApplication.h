@@ -14,23 +14,19 @@
 #endif
 
 #include "VDeleter.h"
-//#include "Mesh.h"
 #include "MeshInternal.h"
 #include "TextureInternal.h"
 
 class VulkanApplication {
  public:
-  VulkanApplication(int window_width, int window_height, std::vector<Mesh> inMeshes, std::vector<Texture> inTextures);
+  VulkanApplication(int window_width, int window_height, std::vector<Mesh*> inMeshes, std::vector<Texture*> inTextures, glm::mat4 *cameraTransformPointer, GLFWwindow *inUserWindow, void (*loop)(float));
   void run();
 
  private:
+
+
   int WIDTH;
   int HEIGHT;
-
-  int loopCount = 0;
-
-  //Temporary
-  const std::string TEXTURE_PATH = "textures/chalet.jpg";
 
   const std::vector<const char*> validationLayers = {
       "VK_LAYER_LUNARG_standard_validation"
@@ -53,7 +49,6 @@ class VulkanApplication {
 
   GLFWwindow *window;
   GLFWcursor *standardCursor;
-  GLFWcursor *dragCursor;
 
   VDeleter<VkInstance> instance{vkDestroyInstance};
   VDeleter<VkDebugReportCallbackEXT> callback{instance, DestroyDebugReportCallbackEXT};
@@ -63,11 +58,13 @@ class VulkanApplication {
   VDeleter<VkDevice> device{vkDestroyDevice};
 
 
-  std::vector<Mesh> inputMeshes;
+  std::vector<Mesh*> inputMeshes;
   std::vector<MeshInternal> meshes;
 
-  std::vector<Texture> inputTextures;
+  std::vector<Texture*> inputTextures;
   std::vector<TextureInternal> textures;
+
+  glm::mat4 *cameraTransform;
 
   VkQueue graphicsQueue;
   VkQueue presentQueue;
@@ -207,10 +204,14 @@ class VulkanApplication {
   void createSemaphores();
 
   void mainLoop();
+  void (*userLoop)(float);
+  long lastTime;
 
   void updateUniformBuffer();
   void drawFrame();
   void recreateSwapChain();
+
+  void addMesh(Mesh *mesh); //@TODO: Create Uniform Buffer, descriptorSet, vertexBuffer, indexBuffer, and record commandBuffer.
 
   std::vector<const char*> getRequiredExtensions();
   bool checkValidationLayerSupport();
