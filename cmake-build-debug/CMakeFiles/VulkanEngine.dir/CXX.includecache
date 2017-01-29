@@ -136,6 +136,24 @@ fstream
 sstream
 -
 
+/home/siddharth/ClionProjects/VulkanEngine/Application.cpp
+chrono
+-
+Application.h
+/home/siddharth/ClionProjects/VulkanEngine/Application.h
+
+/home/siddharth/ClionProjects/VulkanEngine/Application.h
+GLFW/glfw3.h
+-
+VulkanApplication.h
+/home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h
+glm/glm.hpp
+-
+glm/gtc/matrix_transform.hpp
+-
+glm/gtx/hash.hpp
+-
+
 /home/siddharth/ClionProjects/VulkanEngine/Mesh.cpp
 Mesh.h
 /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
@@ -145,8 +163,6 @@ tiny_obj_loader.h
 -
 
 /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
-VulkanCommon.h
-/home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
 VDeleter.h
 /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
 vector
@@ -157,6 +173,8 @@ unordered_map
 -
 glm/glm.hpp
 -
+Texture.h
+/home/siddharth/ClionProjects/VulkanEngine/Texture.h
 
 /home/siddharth/ClionProjects/VulkanEngine/MeshInternal.cpp
 MeshInternal.h
@@ -169,6 +187,8 @@ Mesh.h
 /home/siddharth/ClionProjects/VulkanEngine/Mesh.h
 VDeleter.h
 /home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
+TextureInternal.h
+/home/siddharth/ClionProjects/VulkanEngine/TextureInternal.h
 
 /home/siddharth/ClionProjects/VulkanEngine/Texture.cpp
 Texture.h
@@ -181,6 +201,8 @@ stdexcept
 /home/siddharth/ClionProjects/VulkanEngine/Texture.h
 string
 -
+VDeleter.h
+/home/siddharth/ClionProjects/VulkanEngine/VDeleter.h
 
 /home/siddharth/ClionProjects/VulkanEngine/TextureInternal.cpp
 TextureInternal.h
@@ -247,6 +269,8 @@ VulkanCommon.h
 /home/siddharth/ClionProjects/VulkanEngine/VulkanCommon.h
 GLFW/glfw3.h
 -
+vulkan/vulkan.h
+-
 glm/glm.hpp
 -
 glm/gtc/matrix_transform.hpp
@@ -257,16 +281,6 @@ vector
 -
 
 /home/siddharth/ClionProjects/VulkanEngine/main.cpp
-VulkanApplication.h
-/home/siddharth/ClionProjects/VulkanEngine/VulkanApplication.h
-glm/glm.hpp
--
-glm/gtc/matrix_transform.hpp
--
-glm/gtx/hash.hpp
--
-glm/ext.hpp
--
-chrono
--
+Application.h
+/home/siddharth/ClionProjects/VulkanEngine/Application.h
 

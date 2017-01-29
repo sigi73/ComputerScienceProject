@@ -8,6 +8,7 @@
 #define VULKANENGINE_TEXTURE_H
 
 #include <string>
+#include "VDeleter.h"
 
 
 typedef unsigned char stbi_uc;
@@ -22,6 +23,7 @@ class Texture {
   int texWidth;
   int texHeight;
   int texChannels;
+
 };
 
 #endif //VULKANENGINE_TEXTURE_H

@@ -6,19 +6,15 @@
 #ifndef VULKANENGINE_MESH_H
 #define VULKANENGINE_MESH_H
 
-/*
-#ifndef VULKAN_COMMON_IMPLEMENTATION
-#define VULKAN_COMMON_IMPLEMENTATION
-#include "VulkanCommon.h"
-#endif
 
 #include "VDeleter.h"
- */
+
 
 #include <vector>
 #include <string>
 #include <unordered_map>
 #include <glm/glm.hpp>
+#include "Texture.h"
 
 struct Vertex;
 
@@ -30,23 +26,14 @@ class Mesh {
 
   glm::mat4 transform;
 
-  int textureIndex;
+  //int textureIndex;
+  Texture *texture;
 
-  /*
-  VDeleter<VkBuffer> vertexBuffer;
-  VDeleter<VkDeviceMemory> vertexBufferMemory;
-  VDeleter<VkBuffer> indexBuffer;
-  VDeleter<VkDeviceMemory> indexBufferMemory;
 
-  VDeleter<VkBuffer> uniformStagingBuffer;
-  VDeleter<VkDeviceMemory> uniformStagingBufferMemory;
-  VDeleter<VkBuffer> uniformBuffer;
-  VDeleter<VkDeviceMemory>uniformBufferMemory;
-
-  VkDescriptorSet descriptorSet;
-   */
 
   Mesh(std::string path, int inputTextureIndex);
+  Mesh(std::string path, Texture *inputTexture);
+  Mesh();
 
   void translate(glm::vec3 vector);
 };

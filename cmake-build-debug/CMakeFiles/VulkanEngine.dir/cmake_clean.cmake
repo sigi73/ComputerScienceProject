@@ -7,6 +7,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o"
   "CMakeFiles/VulkanEngine.dir/Texture.cpp.o"
   "CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/Application.cpp.o"
   "VulkanEngine.pdb"
   "VulkanEngine"
 )

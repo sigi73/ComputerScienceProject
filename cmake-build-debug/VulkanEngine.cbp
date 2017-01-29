@@ -90,6 +90,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Application.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Application.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Mesh.cpp">
 			<Option target="VulkanEngine"/>
 		</Unit>

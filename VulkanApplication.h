@@ -19,14 +19,26 @@
 
 class VulkanApplication {
  public:
-  VulkanApplication(int window_width, int window_height, std::vector<Mesh*> inMeshes, std::vector<Texture*> inTextures, glm::mat4 *cameraTransformPointer, GLFWwindow *inUserWindow, void (*loop)(float));
-  void run();
+  VulkanApplication();
+  VulkanApplication(int window_width, int window_height, glm::mat4 *cameraTransformPointer, GLFWwindow **inUserWindow, void* inApp, void (*loop)(float, void* app), void (*window)(void *app));
+  void run(std::vector<Mesh*> inMeshes, std::vector<Texture*> inTextures);
+  void startMainLoop();
+
+  void addMesh(Mesh *newMesh);
+  void deleteMesh(Mesh *toDelete);
+
+  static void onWindowResized(GLFWwindow *window, int width, int height, VulkanApplication *app);
+  //static void cursor_pos_callback(GLFWwindow *window, double xpos, double ypos);
+  //static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods);
 
  private:
 
-
+  void *app;
   int WIDTH;
   int HEIGHT;
+
+  void (*userLoop)(float, void *app);
+  void (*windowSetup)(void *app);
 
   const std::vector<const char*> validationLayers = {
       "VK_LAYER_LUNARG_standard_validation"
@@ -48,6 +60,7 @@ class VulkanApplication {
 #endif //DEBUGGING_STATEMENTS
 
   GLFWwindow *window;
+  GLFWwindow **userWindow;
   GLFWcursor *standardCursor;
 
   VDeleter<VkInstance> instance{vkDestroyInstance};
@@ -63,6 +76,7 @@ class VulkanApplication {
 
   std::vector<Texture*> inputTextures;
   std::vector<TextureInternal> textures;
+
 
   glm::mat4 *cameraTransform;
 
@@ -121,16 +135,13 @@ class VulkanApplication {
   VDeleter<VkDeviceMemory> depthImageMemory{device, vkFreeMemory};
   VDeleter<VkImageView> depthImageView{device, vkDestroyImageView};
 
-  bool leftDown = false;
-  double startX = 0.0d;
-  double startY = 0.0d;
+  //bool leftDown = false;
+  //double startX = 0.0d;
+  //double startY = 0.0d;
 
-  float modelRotation = 0.0f;
+  //float modelRotation = 0.0f;
 
   void initWindow();
-  static void onWindowResized(GLFWwindow *window, int width, int height);
-  static void cursor_pos_callback(GLFWwindow *window, double xpos, double ypos);
-  static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods);
 
 
   void initVulkan();
@@ -181,21 +192,36 @@ class VulkanApplication {
   void createFramebuffers();
 
   void createTextureImage();
+  void createSingleTextureImage(TextureInternal *texture);
+
   void copyImage(VkImage srcImage, VkImage dstImage, uint32_t width, uint32_t height);
 
   void createTextureImageView();
+  void createSingleTextureImageView(TextureInternal *texture);
+
   void createTextureSampler();
+  void createSingleTextureSampler(TextureInternal *texture);
 
   void createVertexBuffer();
+  void createSingleVertexBuffer(MeshInternal *mesh);
+
   void createBuffer(VkDeviceSize size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties, VDeleter<VkBuffer> &buffer,
                     VDeleter<VkDeviceMemory> &bufferMemory);
   void copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize size);
 
 
   void createIndexBuffer();
+  void createSingleIndexBuffer(MeshInternal *mesh);
+
   void createUniformBuffer();
+  void createSingleUniformBuffer(MeshInternal *mesh);
+
+
   void createDescriptorPool();
+
   void createDescriptorSet();
+  void createSingleDescriptorSet(MeshInternal *mesh);
+
 
   void createCommandBuffers();
   VkCommandBuffer beginSingleTimeCommands();
@@ -204,14 +230,14 @@ class VulkanApplication {
   void createSemaphores();
 
   void mainLoop();
-  void (*userLoop)(float);
   long lastTime;
 
   void updateUniformBuffer();
   void drawFrame();
   void recreateSwapChain();
 
-  void addMesh(Mesh *mesh); //@TODO: Create Uniform Buffer, descriptorSet, vertexBuffer, indexBuffer, and record commandBuffer.
+  //void addMesh(Mesh *mesh); //@TODO: To do this, need to create Uniform Buffer, descriptorSet, vertexBuffer, indexBuffer, and record commandBuffer.
+  //void deleteMesh(Mesh *mesh); //@TODO: To do this, need to delete the MeshInternal object and record commandBuffer.
 
   std::vector<const char*> getRequiredExtensions();
   bool checkValidationLayerSupport();

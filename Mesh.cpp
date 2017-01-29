@@ -12,9 +12,11 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-Mesh::Mesh(std::string path, int inputTextureIndex)
+//Mesh::Mesh(std::string path, int inputTextureIndex)
+Mesh::Mesh(std::string path, Texture *inputTexture)
 {
-  textureIndex = inputTextureIndex;
+  //textureIndex = inputTextureIndex;
+  texture = inputTexture;
   tinyobj::attrib_t attrib;
   std::vector<tinyobj::shape_t> shapes;
   std::vector<tinyobj::material_t> materials;
@@ -51,6 +53,10 @@ Mesh::Mesh(std::string path, int inputTextureIndex)
       indices.push_back(uniqueVertices[vertex]);
     }
   }
+}
+
+Mesh::Mesh() {
+
 }
 
 void Mesh::translate(glm::vec3 vector) {
