@@ -6,7 +6,7 @@ set(STB_INCLUDE_PATH "Packages/stb")
 set(TINYOBJ_INCLUDE_PATH "Packages/tinyobjloader")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3")
 
 include_directories(${VULKAN_SDK_PATH}/include)
 include_directories(${STB_INCLUDE_PATH})

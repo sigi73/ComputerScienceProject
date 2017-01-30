@@ -299,13 +299,13 @@ VulkanEngine: CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o
 VulkanEngine: CMakeFiles/VulkanEngine.dir/Application.cpp.o
 VulkanEngine: CMakeFiles/VulkanEngine.dir/build.make
 VulkanEngine: /usr/local/lib/libglfw3.a
-VulkanEngine: /usr/lib/librt.so
-VulkanEngine: /usr/lib/libm.so
-VulkanEngine: /usr/lib/libX11.so
-VulkanEngine: /usr/lib/libXrandr.so
-VulkanEngine: /usr/lib/libXinerama.so
-VulkanEngine: /usr/lib/libXxf86vm.so
-VulkanEngine: /usr/lib/libXcursor.so
+VulkanEngine: /usr/lib64/librt.so
+VulkanEngine: /usr/lib64/libm.so
+VulkanEngine: /usr/lib64/libX11.so
+VulkanEngine: /usr/lib64/libXrandr.so
+VulkanEngine: /usr/lib64/libXinerama.so
+VulkanEngine: /usr/lib64/libXxf86vm.so
+VulkanEngine: /usr/lib64/libXcursor.so
 VulkanEngine: CMakeFiles/VulkanEngine.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable VulkanEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VulkanEngine.dir/link.txt --verbose=$(VERBOSE)

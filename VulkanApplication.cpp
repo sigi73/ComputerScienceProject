@@ -62,14 +62,14 @@ void VulkanApplication::startMainLoop() {
 }
 
 void VulkanApplication::addMesh(Mesh *newMesh) {
-  printf("Test1\n");
   inputMeshes.push_back(newMesh);
   MeshInternal *mesh = new MeshInternal(device, newMesh);
-  printf("Test2\n");
+  //MeshInternal mesh(device, newMesh);
   bool hasTexture = false;
   for (int i = 0; i < textures.size(); i++) {
     if (newMesh->texture == textures[i].baseTexture) {
       mesh->texture = &textures[i];
+      //mesh.texture = &textures[i];
       hasTexture = true;
       break;
     }
@@ -77,26 +77,23 @@ void VulkanApplication::addMesh(Mesh *newMesh) {
 
   if (!hasTexture) {
     TextureInternal *textureInternal = new TextureInternal{device, newMesh->texture};
+    //TextureInternal textureInternal(device, newMesh->texture);
     createSingleTextureImage(textureInternal);
     createSingleTextureImageView(textureInternal);
     createSingleTextureSampler(textureInternal);
     textures.push_back(*textureInternal);
     mesh->texture = textureInternal;
+    //mesh.texture = &textureInternal;
   }
 
   createSingleVertexBuffer(mesh);
-  printf("Test3\n");
   createSingleIndexBuffer(mesh);
-  printf("Test4\n");
   createSingleUniformBuffer(mesh);
-  printf("Test5\n");
   createSingleDescriptorSet(mesh);
-  printf("Test6\n");
   meshes.push_back(*mesh);
-  printf("Test7\n");
   createGraphicsPipeline();
-  createCommandBuffers();
-  printf("Test8\n");
+  recreateSwapChain();
+  //createCommandBuffers();
 }
 
 void VulkanApplication::initWindow() {
@@ -637,8 +634,6 @@ void VulkanApplication::createGraphicsPipeline() {
   auto vertShaderCode = readFile("shaders/vert.spv");
   auto fragShaderCode = readFile("shaders/frag.spv");
 
-  //printf("vertShaderCode: %d\n", vertShaderCode.size());
-  //printf("fragShaderCode: %d\n", fragShaderCode.size());
 
   VDeleter<VkShaderModule> vertShaderModule{device, vkDestroyShaderModule};
   VDeleter<VkShaderModule> fragShaderModule{device, vkDestroyShaderModule};
@@ -1098,22 +1093,6 @@ void VulkanApplication::loadModels() {
     meshes.push_back(meshInternal);
   }
 
-
-  //printf("textures.size(): %lu\n", textures.size());
-  //printf("inputTextures.size(): %lu\n", inputTextures.size());
-
-  /*
-  for (int i = 0; i < meshes[0].vertices.size(); i++) {
-    printf("1: %f, %f, %f, 2: %f, %f, %f\n",
-           meshes[0].vertices[i].pos.x,
-           meshes[0].vertices[i].pos.y,
-           meshes[0].vertices[i].pos.z,
-           meshes[1].vertices[i].pos.x,
-           meshes[1].vertices[i].pos.y,
-           meshes[1].vertices[i].pos.z
-    );
-  }
-   */
 }
 
 
@@ -1192,7 +1171,6 @@ void VulkanApplication::createSingleUniformBuffer(MeshInternal *mesh) {
   createBuffer(bufferSize, VK_BUFFER_USAGE_TRANSFER_DST_BIT |
                    VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
                mesh->uniformBuffer, mesh->uniformBufferMemory);
-  printf("Did this\n");
 }
 
 
@@ -1384,6 +1362,7 @@ void VulkanApplication::createCommandBuffers() {
                          commandBuffers.data());
   }
 
+
   commandBuffers.resize(swapChainFramebuffers.size());
 
   VkCommandBufferAllocateInfo allocInfo = {};
@@ -1396,6 +1375,15 @@ void VulkanApplication::createCommandBuffers() {
       != VK_SUCCESS) {
     throw std::runtime_error("Failed to allocate command buffers");
   }
+
+  /*
+  if (meshes.size() == 2) {
+    for (int i = 0; i < meshes.size(); i++) {
+
+      MeshInternal test = meshes[i];
+    }
+  }
+   */
 
   for (size_t i = 0; i < commandBuffers.size(); i++) {
     VkCommandBufferBeginInfo beginInfo = {};
@@ -1425,9 +1413,7 @@ void VulkanApplication::createCommandBuffers() {
     vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS,
                       graphicsPipeline);
 
-    int j = 0;
     for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
-      //printf("i: %d\n", j);
       VkBuffer vertexBuffers[] = {mesh->vertexBuffer};
       VkDeviceSize offsets[] = {0};
       vkCmdBindVertexBuffers(commandBuffers[i], 0, 1, vertexBuffers, offsets);
@@ -1439,7 +1425,7 @@ void VulkanApplication::createCommandBuffers() {
                               pipelineLayout, 0, 1, &mesh->descriptorSet, 0, nullptr);
 
       vkCmdDrawIndexed(commandBuffers[i], mesh->indices.size(), 1, 0, 0, 1);
-      j++;
+      //j++;
     }
     vkCmdEndRenderPass(commandBuffers[i]);
 

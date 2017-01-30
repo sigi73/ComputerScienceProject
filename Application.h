@@ -40,38 +40,36 @@ class Application {
   void internalLoop(float deltaTime);
   void internalKeyCallback(int key, int scancode, int action, int mods);
   void internalInitWindow();
+  void updateCameraTransform();
 
   GLFWwindow *window;
   glm::mat4 cameraTransform;
-  glm::vec3 cameraPos{0.0f, 0.0f, 0.0f};
-  glm::vec3 cameraDirection{0.0f, 0.0f, 0.0f};
-  glm::vec2 cameraAngles{0.0f, 0.0f};
-
-  bool moveForward = false;
-  bool moveBackward = false;
-  bool moveLeft = false;
-  bool moveRight = false;
-  bool moveUp = false;
-  bool moveDown = false;
 
   std::vector<Mesh*> meshes;
   std::vector<Texture*> textures;
 
-  const std::string HOUSE_TEXTURE_PATH = "textures/chalet.jpg";
-  const std::string HOUSE_PATH = "models/chalet.obj";
 
-  const std::string CUBE_TEXTURE_PATH = "textures/cube.jpg";
-  const std::string CUBE_PATH = "models/cube.obj";
+  const std::string GROUND_PATH = "models/ground.obj";
+  const std::string WATER_PATH = "models/water.obj";
+  const std::string TREE_PATH = "models/tree.obj";
+  const std::string DUCK_PATH = "models/duck.obj";
 
-  //VulkanApplication app{800, 600, &meshes, &textures, &cameraTransform, &window, Application::loop};
+  const std::string GROUND_TEXTURE_PATH = "textures/GroundTexture.png";
+  const std::string WATER_TEXTURE_PATH = "textures/WaterTexture.png";
+  const std::string TREE_TEXTURE_PATH = "textures/TreeTexture.png";
+  const std::string DUCK_TEXTURE_PATH = "textures/DuckTexture.png";
+
+  float ROTATION_SPEED = 1.0f;
+
   VulkanApplication app{800, 600, &cameraTransform, &window, this, Application::loop, Application::initWindow};
 
+  Mesh duck;
 
-  //Meshes
-  Mesh cube;
+  float cameraRotation = 0.0f;
 
+  bool leftPressed = false;
+  bool rightPressed = false;
 
-  bool bumped = false;
 };
 
 #endif //VULKANENGINE_APPLICATION_H

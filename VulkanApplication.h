@@ -50,7 +50,7 @@ class VulkanApplication {
   };
 
 
-#define DEBUGGING_STATEMENTS
+//#define DEBUGGING_STATEMENTS
 #ifdef DEBUGGING_STATEMENTS     //Used to set defines for printing
   //diagnostic information
 #define ENUMERATE_EXTENSIONS
