@@ -18,12 +18,14 @@ void Application::run() {
  Mesh tree(TREE_PATH, &treeTexture);
  Mesh tree2(TREE_PATH, &treeTexture);
  duck = Mesh(DUCK_PATH, &duckTexture);
+  Mesh duck2 = Mesh(DUCK_PATH, &duckTexture);
 
   ground.transform = glm::scale(glm::mat4(), glm::vec3(.2, .2, .2));
   water.transform = glm::scale(glm::mat4(), glm::vec3(.2, .2, .2));
   tree.transform = glm::scale(glm::mat4(), glm::vec3(.2, .2, .2));
   tree2.transform = glm::scale(glm::mat4(), glm::vec3(.2, .2, .2));
   duck.transform = glm::scale(glm::mat4(), glm::vec3(.2, .2, .2));
+  duck2.transform = glm::scale(glm::mat4(), glm::vec3(.15, .15, .15));
 
 
  textures.push_back(&groundTexture);
@@ -35,6 +37,7 @@ void Application::run() {
 
  meshes.push_back(&tree);
  meshes.push_back(&duck);
+  meshes.push_back(&duck2);
 
 
 
