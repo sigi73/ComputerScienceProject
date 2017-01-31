@@ -17,6 +17,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/hash.hpp>
 #include <vector>
+#include <array>
 
 struct UniformBufferObject {
     glm::mat4 model;
@@ -38,8 +39,7 @@ struct Vertex {
     return bindingDescription;
   }
 
-  static std::array<VkVertexInputAttributeDescription, 3>
-  getAttributeDescriptions() {
+  static std::array<VkVertexInputAttributeDescription, 3> getAttributeDescriptions() {
     std::array<VkVertexInputAttributeDescription, 3> attributeDescriptions = {};
 
     attributeDescriptions[0].binding = 0;

@@ -185,7 +185,22 @@ void VulkanApplication::enumerateExtensions() {
 #endif //ENUMERATE_EXTENSIONS
 
 std::vector<const char*> VulkanApplication::getRequiredExtensions() {
+	std::vector<const char*> extensions;
 
+	unsigned int glfwExtensionCount = 0;
+	const char** glfwExtensions;
+	glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+	for (unsigned int i = 0; i < glfwExtensionCount; i++) {
+		extensions.push_back(glfwExtensions[i]);
+	}
+
+	if (enableValidationLayers) {
+		extensions.push_back(VK_EXT_DEBUG_REPORT_EXTENSION_NAME);
+	}
+
+	return extensions;
+/*
   std::vector<const char*> extensions = {
       "VK_KHR_surface",
       "VK_KHR_xcb_surface"
@@ -196,6 +211,7 @@ std::vector<const char*> VulkanApplication::getRequiredExtensions() {
   }
 
   return extensions;
+  */
 }
 
 bool VulkanApplication::checkValidationLayerSupport() {
