@@ -22,11 +22,11 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../Packages/stb"
   "../Packages/tinyobjloader"
   "../Packages/glfw/include"
-  "/usr/local/include"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

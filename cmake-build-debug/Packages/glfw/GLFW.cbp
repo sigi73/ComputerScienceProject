@@ -41,13 +41,13 @@
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/Packages/glfw/include"/>
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/Packages/glfw/src"/>
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/Packages/glfw/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include-fixed"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/x86_64-pc-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j8 -f &quot;/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/Packages/glfw/src/Makefile&quot;  VERBOSE=1 glfw"/>
@@ -70,13 +70,13 @@
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/Packages/glfw/include"/>
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/Packages/glfw/src"/>
 					<Add directory="/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/Packages/glfw/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/include-fixed"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/x86_64-pc-linux-gnu"/>
-					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/6.3.1/../../../../include/c++/6.3.1/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j8 -f &quot;/home/siddharth/ClionProjects/VulkanEngine/cmake-build-debug/Packages/glfw/src/Makefile&quot;  VERBOSE=1 glfw/fast"/>
