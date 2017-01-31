@@ -5,36 +5,36 @@
   </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" buildAllGenerated="true">
     <generated>
+      <config projectName="VulkanEngine" targetName="msaa" />
+      <config projectName="VulkanEngine" targetName="reopen" />
+      <config projectName="VulkanEngine" targetName="heightmap" />
+      <config projectName="VulkanEngine" targetName="gamma" />
+      <config projectName="VulkanEngine" targetName="VulkanEngine" />
+      <config projectName="VulkanEngine" targetName="events" />
       <config projectName="VulkanEngine" targetName="particles" />
-      <config projectName="VulkanEngine" targetName="clipboard" />
+      <config projectName="VulkanEngine" targetName="joysticks" />
+      <config projectName="VulkanEngine" targetName="vulkan" />
+      <config projectName="VulkanEngine" targetName="splitview" />
+      <config projectName="VulkanEngine" targetName="docs" />
+      <config projectName="VulkanEngine" targetName="glfwinfo" />
+      <config projectName="VulkanEngine" targetName="tearing" />
+      <config projectName="VulkanEngine" targetName="uninstall" />
+      <config projectName="VulkanEngine" targetName="icon" />
+      <config projectName="VulkanEngine" targetName="threads" />
+      <config projectName="VulkanEngine" targetName="glfw" />
+      <config projectName="VulkanEngine" targetName="gears" />
+      <config projectName="VulkanEngine" targetName="empty" />
+      <config projectName="VulkanEngine" targetName="monitors" />
+      <config projectName="VulkanEngine" targetName="boing" />
       <config projectName="VulkanEngine" targetName="wave" />
       <config projectName="VulkanEngine" targetName="iconify" />
-      <config projectName="VulkanEngine" targetName="glfw" />
-      <config projectName="VulkanEngine" targetName="simple" />
-      <config projectName="VulkanEngine" targetName="reopen" />
-      <config projectName="VulkanEngine" targetName="docs" />
-      <config projectName="VulkanEngine" targetName="icon" />
       <config projectName="VulkanEngine" targetName="title" />
-      <config projectName="VulkanEngine" targetName="cursor" />
-      <config projectName="VulkanEngine" targetName="gamma" />
-      <config projectName="VulkanEngine" targetName="monitors" />
-      <config projectName="VulkanEngine" targetName="VulkanEngine" />
+      <config projectName="VulkanEngine" targetName="simple" />
       <config projectName="VulkanEngine" targetName="windows" />
-      <config projectName="VulkanEngine" targetName="tearing" />
-      <config projectName="VulkanEngine" targetName="msaa" />
-      <config projectName="VulkanEngine" targetName="boing" />
-      <config projectName="VulkanEngine" targetName="joysticks" />
-      <config projectName="VulkanEngine" targetName="splitview" />
-      <config projectName="VulkanEngine" targetName="sharing" />
-      <config projectName="VulkanEngine" targetName="vulkan" />
-      <config projectName="VulkanEngine" targetName="threads" />
-      <config projectName="VulkanEngine" targetName="glfwinfo" />
-      <config projectName="VulkanEngine" targetName="uninstall" />
-      <config projectName="VulkanEngine" targetName="empty" />
+      <config projectName="VulkanEngine" targetName="cursor" />
       <config projectName="VulkanEngine" targetName="timeout" />
-      <config projectName="VulkanEngine" targetName="events" />
-      <config projectName="VulkanEngine" targetName="gears" />
-      <config projectName="VulkanEngine" targetName="heightmap" />
+      <config projectName="VulkanEngine" targetName="sharing" />
+      <config projectName="VulkanEngine" targetName="clipboard" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -44,68 +44,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76a3da7b-8e65-45dd-aedd-99f694adf8ea" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeCCompiler.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeCXXCompiler.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_C.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeDetermineCompilerABI_CXX.bin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CMakeSystem.cmake" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdC/a.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.7.2/CompilerIdCXX/a.out" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/vgcore.19456" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/chalet.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/chalet.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/models/cube.obj" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Application.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Application.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Mesh.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/Mesh.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanApplication.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/VulkanCommon.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/main.cpp.o" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/main.cpp.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine" afterPath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/textures/WaterTexture.png" afterPath="$PROJECT_DIR$/cmake-build-debug/textures/WaterTexture.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textures/WaterTexture.png" afterPath="$PROJECT_DIR$/textures/WaterTexture.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application.cpp" afterPath="$PROJECT_DIR$/Application.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application.h" afterPath="$PROJECT_DIR$/Application.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VulkanApplication.cpp" afterPath="$PROJECT_DIR$/VulkanApplication.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VulkanApplication.h" afterPath="$PROJECT_DIR$/VulkanApplication.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.6.3/CMakeSystem.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.6.3/CMakeSystem.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeError.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeRuleHashes.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/DependInfo.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/depend.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/flags.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/flags.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/VulkanEngine.dir/link.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/Export/lib/cmake/glfw3/glfw3Targets.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/uninstall.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/CMakeFiles/uninstall.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/GLFW.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/GLFW.cbp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/cmake_uninstall.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/cmake_uninstall.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/CMakeDirectoryInformation.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/depend.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/flags.make" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/CMakeFiles/glfw.dir/flags.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Packages/glfw/src/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/VulkanEngine.cbp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/duck.obj" afterPath="$PROJECT_DIR$/models/duck.obj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/tree.obj" afterPath="$PROJECT_DIR$/models/tree.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="VulkanEngine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,7 +81,7 @@
       <file leaf-file-name="VulkanApplication.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VulkanApplication.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
+            <state relative-caret-position="2574">
               <caret line="143" column="77" lean-forward="false" selection-start-line="143" selection-start-column="77" selection-end-line="143" selection-end-column="77" />
               <folding>
                 <element signature="e#273#294#0" expanded="true" />
@@ -657,12 +596,13 @@
       <workItem from="1485660017796" duration="5424000" />
       <workItem from="1485666317085" duration="2286000" />
       <workItem from="1485758937466" duration="7432000" />
-      <workItem from="1485839672511" duration="7081000" />
+      <workItem from="1485839672511" duration="7362000" />
+      <workItem from="1485887516788" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230038000" />
+    <option name="totallyTimeSpent" value="230323000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,26 +615,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="57" y="27" width="1543" height="873" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22185649" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32421342" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3269494" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34336525" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24950625" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39808482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32421342" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34336525" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968536" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39808482" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -933,7 +873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="675" column="0" lean-forward="false" selection-start-line="675" selection-start-column="0" selection-end-line="675" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -941,7 +880,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="14" lean-forward="false" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -949,7 +887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,7 +894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,7 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -973,9 +908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#233#259#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -983,9 +915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="170" column="0" lean-forward="false" selection-start-line="170" selection-start-column="0" selection-end-line="170" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#60#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,9 +922,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="105" column="50" lean-forward="false" selection-start-line="105" selection-start-column="50" selection-end-line="105" selection-end-column="50" />
-          <folding>
-            <element signature="e#369#391#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1003,13 +929,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="33" lean-forward="false" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VulkanApplication.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
+        <state relative-caret-position="2574">
           <caret line="143" column="77" lean-forward="false" selection-start-line="143" selection-start-column="77" selection-end-line="143" selection-end-column="77" />
           <folding>
             <element signature="e#273#294#0" expanded="true" />

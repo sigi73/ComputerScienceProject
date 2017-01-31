@@ -1,0 +1,12 @@
+Install cmake, make, and gcc
+Install the vulkan driver for your system
+Pull the git repository
+Run 'git submodule init'
+Run 'git submodule update'
+    These commands pull in an up to date version of glfw
+Move to the cmake-build-debug directory
+Run 'cmake ..'
+    If this command creates an error, delete everything inside cmake-build-debug then re-run 'cmake ..'
+Once this command completes, run make
+This will create a binary called 'VulkanEngine'
+Run it with the following command './VulkanEngine'

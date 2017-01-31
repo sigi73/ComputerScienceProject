@@ -1,0 +1,27 @@
+Windows setup Visual Studio
+Install either Visual Studio 2013 or 2015
+Download the 32Bit GLFW Windows Binaries: http://www.glfw.org/download.html
+Install VulkanSDK: https://vulkan.lunarg.com/sdk/home
+Install Cmake: https://cmake.org/download/
+Install the Vulkan driver for your system
+	Intel:https://software.intel.com/en-us/blogs/2016/03/14/new-intel-vulkan-beta-1540204404-graphics-driver-for-windows-78110-1540
+	(AMD and Nvidia should have vulkan support if your drivers are up to date)
+Install git
+Pull git repository
+Run 'git submodule init'
+Run 'git submodule update'
+	These commands pull in an up to date version of glfw
+Run CMake-Gui
+Set Source Directory to the repository
+Set Build Directory to another external folder
+Click configure and select the appropriate version of visual studio
+Click generate, then open project
+In Visual Studio, on the right side, right click on VulkanProject and select properties
+In the menu that opens, eelect linker, then on the right under Additional Library Directories add the Bin32 folder of the VulkanSDK
+Then, under linker on the left, select input, and on the right under Additional Dependencies change vulkan.lib to vulkan-1.lib
+You will then need to close VisualStudio and reopen it as administrator.
+Once the project is repoened, on the right, right click on INSTALL and click "Build"
+Right click on VulkanEngine on the right, and press "Set as Startup Project"
+Right clock on ALL_BUILD and click "Build"
+From the GLFW Windows Binaries, copy glfw3.dll to the visual studio project folder/Debug (The same folder as the exe)
+Finally on the top, click the green arrow that says "Local Windows Debugger"
