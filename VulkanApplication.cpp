@@ -49,6 +49,9 @@ void VulkanApplication::startMainLoop() {
   mainLoop();
 }
 
+/*
+ * Initializes the glfwWindow and sets up the cursor
+ */
 void VulkanApplication::initWindow() {
   glfwInit();
 
@@ -67,6 +70,9 @@ void VulkanApplication::initWindow() {
   windowSetup(app);
 }
 
+/*
+ * Recreates the swapchain whenever the window is resized. Allows the display to be resizeable
+ */
 void VulkanApplication::onWindowResized(GLFWwindow *window, int width, int height, VulkanApplication *app) {
   if (width == 0 || height == 0) return;
   app->recreateSwapChain();
@@ -105,23 +111,32 @@ void VulkanApplication::initVulkan() {
 
 void VulkanApplication::mainLoop() {
   while (!glfwWindowShouldClose(window)) {
+    //Update the input events
     glfwPollEvents();
 
+    //Get the current system time
     long currentTime = std::chrono::duration_cast< std::chrono::milliseconds > (
         std::chrono::system_clock::now().time_since_epoch()
     ).count();
 
+    //Calculate a change in time so that movement speed is independent of framerate
     long deltaTime = currentTime - lastTime;
     float deltaSeconds = deltaTime / 1000.0f;
 
+    //The user loop is called to let the user update the transforms of meshes
     (*userLoop)(deltaSeconds, app);
+    //Copies the user changes of the object transforms to GPU memory
     updateUniformBuffer();
+    //Runs the previously recorded command buffers to draw the updated frame
     drawFrame();
     lastTime = currentTime;
   }
   vkDeviceWaitIdle(device);
 }
 
+/*
+ * Used for debugging to list the extensions available on the system
+ */
 #ifdef ENUMERATE_EXTENSIONS
 void VulkanApplication::enumerateExtensions() {
         uint32_t extensionCount = 0;
@@ -137,6 +152,9 @@ void VulkanApplication::enumerateExtensions() {
     }
 #endif //ENUMERATE_EXTENSIONS
 
+/*
+ * Gets the required extensions from the OS to display the Vulkan output
+ */
 std::vector<const char*> VulkanApplication::getRequiredExtensions() {
 	std::vector<const char*> extensions;
 
@@ -153,20 +171,11 @@ std::vector<const char*> VulkanApplication::getRequiredExtensions() {
 	}
 
 	return extensions;
-/*
-  std::vector<const char*> extensions = {
-      "VK_KHR_surface",
-      "VK_KHR_xcb_surface"
-  };
-
-  if (enableValidationLayers) {
-    extensions.push_back(VK_EXT_DEBUG_REPORT_EXTENSION_NAME);
-  }
-
-  return extensions;
-  */
 }
 
+/*
+ * Make sure all of the requested validation layers are actually available on the system. Only used for debugging
+ */
 bool VulkanApplication::checkValidationLayerSupport() {
   uint32_t layerCount;
   vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
@@ -280,6 +289,9 @@ void VulkanApplication::pickPhysicalDevice() {
   }
 }
 
+/*
+ * Makes sure the passed device has the proper support for rendering the final frames on the swapchain
+ */
 SwapChainSupportDetails VulkanApplication::querySwapChainSupport(VkPhysicalDevice device) {
   SwapChainSupportDetails details;
 
@@ -307,6 +319,9 @@ SwapChainSupportDetails VulkanApplication::querySwapChainSupport(VkPhysicalDevic
   return details;
 }
 
+/*
+ * Checks if the device supports everything we need it to, i.e. swapchain, extensions, validation layers (if debugging)
+ */
 bool VulkanApplication::isDeviceSuitable(VkPhysicalDevice device) {
   QueueFamilyIndices indices = findQueueFamilies(device);
 
@@ -323,6 +338,9 @@ bool VulkanApplication::isDeviceSuitable(VkPhysicalDevice device) {
   return indices.isComplete() && extensionsSupported && swapChainAdequate;
 }
 
+/*
+ * Finds the queues that the physical device we are using supports. Queues are used to submit the commands we want to run on the GPU through command buffers
+ */
 QueueFamilyIndices VulkanApplication::findQueueFamilies(VkPhysicalDevice device) {
   QueueFamilyIndices indices;
 
@@ -356,6 +374,9 @@ QueueFamilyIndices VulkanApplication::findQueueFamilies(VkPhysicalDevice device)
   return indices;
 }
 
+/*
+ * Makes sure that the requested extensions are supported
+ */
 bool VulkanApplication::checkDeviceExtensionSupport(VkPhysicalDevice device) {
   uint32_t extensionCount;
   vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount,
@@ -491,10 +512,6 @@ void VulkanApplication::createSwapChain() {
 
 }
 
-/*
- *
-The image view defines how to access an image and what parts of it to access. It has the same size as the number of images supported by the swapchain. It can also be used to manipulate color channels.
- */
 void VulkanApplication::createImageViews() {
   swapChainImageViews.resize(swapChainImages.size(), VDeleter<VkImageView>
       {device, vkDestroyImageView});
@@ -505,6 +522,9 @@ void VulkanApplication::createImageViews() {
   }
 }
 
+/*
+ * The image view defines how to access an image and what parts of it to access. It has the same size as the number of images supported by the swapchain. It can also be used to manipulate color channels.
+ */
 void VulkanApplication::createImageView(VkImage image, VkFormat format, VkImageAspectFlags
 aspectFlags, VDeleter<VkImageView> &imageView) {
   VkImageViewCreateInfo viewInfo = {};
@@ -534,6 +554,7 @@ aspectFlags, VDeleter<VkImageView> &imageView) {
  * Render passes consist of subpasses. Each can be used to apply affects on the previous. We define a color subpass and depth subpass that are used to store the color information, and depth information of each pixel.
  */
 void VulkanApplication::createRenderPass() {
+  //Describes the color rendering of the scene
   VkAttachmentDescription colorAttachment = {};
   colorAttachment.format = swapChainImageFormat;
   colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -544,6 +565,7 @@ void VulkanApplication::createRenderPass() {
   colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
   colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 
+  //Describes the depth rendering of the scene
   VkAttachmentDescription depthAttachment = {};
   depthAttachment.format = findDepthFormat();
   depthAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
@@ -607,6 +629,7 @@ void VulkanApplication::createRenderPass() {
  */
 
 void VulkanApplication::createDescriptorSetLayout() {
+  //Binding for the ubo, or uniform buffer object that defines transform
   VkDescriptorSetLayoutBinding uboLayoutBinding = {};
   uboLayoutBinding.binding = 0;
   uboLayoutBinding.descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -614,6 +637,7 @@ void VulkanApplication::createDescriptorSetLayout() {
   uboLayoutBinding.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
   uboLayoutBinding.pImmutableSamplers = nullptr;
 
+  //Binding for the sampler that is used to access colors on the image
   VkDescriptorSetLayoutBinding samplerLayoutBinding = {};
   samplerLayoutBinding.binding = 1;
   samplerLayoutBinding.descriptorType =
@@ -642,7 +666,6 @@ void VulkanApplication::createDescriptorSetLayout() {
 void VulkanApplication::createGraphicsPipeline() {
   auto vertShaderCode = readFile("shaders/vert.spv");
   auto fragShaderCode = readFile("shaders/frag.spv");
-
 
   VDeleter<VkShaderModule> vertShaderModule{device, vkDestroyShaderModule};
   VDeleter<VkShaderModule> fragShaderModule{device, vkDestroyShaderModule};
@@ -1502,23 +1525,6 @@ void VulkanApplication::createSemaphores() {
 }
 
 void VulkanApplication::updateUniformBuffer() {
-  /*
-  static auto startTime = std::chrono::high_resolution_clock::now();
-
-  auto currentTime = std::chrono::high_resolution_clock::now();
-  float time = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime
-      - startTime).count() / 1000.0f;
-
-  UniformBufferObject ubo = {};
-  ubo.model = glm::rotate(glm::mat4(), time * glm::radians(90.0f), glm::vec3
-      0.0f, 0.0f, 1.0f));
-  ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f,
-      0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-  ubo.proj = glm::perspective(glm::radians(45.0f), swapChainExtent.width /
-      (float) swapChainExtent.height, 0.1f, 10.0f);
-
-  ubo.proj[1][1] *= -1;
-  */
   for (auto mesh = meshes.begin(); mesh != meshes.end(); ++mesh) {
     UniformBufferObject ubo = {};
     ubo.model = mesh->baseMesh->transform;

@@ -8,6 +8,9 @@
 
 void Application::run() {
 
+  /*
+   * Initialize textures and meshes from their paths
+   */
   Texture groundTexture(GROUND_TEXTURE_PATH);
   Texture waterTexture(WATER_TEXTURE_PATH);
   Texture treeTexture(TREE_TEXTURE_PATH);
