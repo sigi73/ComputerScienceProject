@@ -21,6 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../Packages/VulkanSDK/1.0.30.0/x86_64/include"
   "../Packages/stb"
   "../Packages/tinyobjloader"
+  "../Packages/glm"
   "../Packages/glfw/include"
   )
 

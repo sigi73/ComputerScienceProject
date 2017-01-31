@@ -24,12 +24,7 @@ class VulkanApplication {
   void run(std::vector<Mesh*> inMeshes, std::vector<Texture*> inTextures);
   void startMainLoop();
 
-  void addMesh(Mesh *newMesh);
-  void deleteMesh(Mesh *toDelete);
-
   static void onWindowResized(GLFWwindow *window, int width, int height, VulkanApplication *app);
-  //static void cursor_pos_callback(GLFWwindow *window, double xpos, double ypos);
-  //static void mouse_button_callback(GLFWwindow *window, int button, int action, int mods);
 
  private:
 
@@ -37,21 +32,36 @@ class VulkanApplication {
   int WIDTH;
   int HEIGHT;
 
+  /*
+   * Stores a reference to an external loop function that is called every frame
+   */
   void (*userLoop)(float, void *app);
+
+  /*
+   * Stores a reference to a window setup function that allows the user to setup the window
+   */
   void (*windowSetup)(void *app);
 
+  /*
+   * Validation layers are used for debugging, and when enabled provide verbose output
+   */
   const std::vector<const char*> validationLayers = {
       "VK_LAYER_LUNARG_standard_validation"
   };
 
-
+  /*
+   * Extensions are added on top of Vulkan to provide functionality as needed. The swapchain is the system that swaps the images between the screen and a hidden framebuffer. This is used to tell Vulkan what extensions we want to use
+   */
   const std::vector<const char*> deviceExtensions = {
       VK_KHR_SWAPCHAIN_EXTENSION_NAME
   };
 
 
+  /*
+   * Used to enable the validation layers and print debug info
+   */
 //#define DEBUGGING_STATEMENTS
-#ifdef DEBUGGING_STATEMENTS     //Used to set defines for printing
+#ifdef DEBUGGING_STATEMENTS
   //diagnostic information
 #define ENUMERATE_EXTENSIONS
   const bool enableValidationLayers = true;
@@ -63,86 +73,78 @@ class VulkanApplication {
   GLFWwindow **userWindow;
   GLFWcursor *standardCursor;
 
+  //Instance of Vulkan. Stores per application state
   VDeleter<VkInstance> instance{vkDestroyInstance};
+  //Callback for providing debug information
   VDeleter<VkDebugReportCallbackEXT> callback{instance, DestroyDebugReportCallbackEXT};
+  //The surface that the image is presented to
   VDeleter<VkSurfaceKHR> surface{instance, vkDestroySurfaceKHR};
 
+  //Vulkan seperates physical and logical device. These are the two objects for these.
   VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
   VDeleter<VkDevice> device{vkDestroyDevice};
 
 
+  //Mesh contains only user data. MeshInternal contains Vulkan memory objects
   std::vector<Mesh*> inputMeshes;
   std::vector<MeshInternal> meshes;
 
+  //Texture contains only user data. TextureInternal contains Vulkan memory objects
   std::vector<Texture*> inputTextures;
   std::vector<TextureInternal> textures;
 
-
   glm::mat4 *cameraTransform;
 
+  //Graphic processing units have different queues that can be assigned to different tasks. Here one is used to create the image and one is used to present it.
   VkQueue graphicsQueue;
   VkQueue presentQueue;
 
+  /*
+   * The swapchain is the system that swaps the images between the screen and a hidden framebuffer. These objects are swapchain itself, as well as the images that are swapped to the screen, and structures describing information about the swapchain.
+   */
   VDeleter<VkSwapchainKHR> swapChain{device, vkDestroySwapchainKHR};
   std::vector<VkImage> swapChainImages;
   VkFormat swapChainImageFormat;
   VkExtent2D swapChainExtent;
-
   std::vector<VDeleter<VkImageView>> swapChainImageViews;
 
+  //A VkRenderPass describes how the vertices submitted to it are rendered.
   VDeleter<VkRenderPass> renderPass{device, vkDestroyRenderPass};
 
+  //Used to describe what types of data will be passed to the shaders. In this case a ubo, or Uniform Buffer Object, which is used to send the position, and a sampler, which is used to access the texture drawn on the meshes.
   VDeleter<VkDescriptorSetLayout> descriptorSetLayout{device,
                                                       vkDestroyDescriptorSetLayout};
+  //Access to the above features is done through a pipeline. This object describes how that pipeline is set up.
   VDeleter<VkPipelineLayout> pipelineLayout{device, vkDestroyPipelineLayout};
 
+  //Actual instance of the pipeline
   VDeleter<VkPipeline> graphicsPipeline{device, vkDestroyPipeline};
 
+  //All of the framebuffers that hold the image before presenting it to the swapchain
   std::vector<VDeleter<VkFramebuffer>> swapChainFramebuffers;
-  VDeleter<VkCommandPool> commandPool{device, vkDestroyCommandPool};
 
+  //The commandPool is used to allocate command buffers. Command buffers describe commands that the GPU will run, and are enumerated here before being created.
+  VDeleter<VkCommandPool> commandPool{device, vkDestroyCommandPool};
   std::vector<VkCommandBuffer> commandBuffers;
 
+  //Used to notify when the image is available and the render is finished
   VDeleter<VkSemaphore> imageAvailableSemaphore{device, vkDestroySemaphore};
   VDeleter<VkSemaphore> renderFinishedSemaphore{device, vkDestroySemaphore};
 
-  //VDeleter<VkImage> textureImage{device, vkDestroyImage};
-  //VDeleter<VkDeviceMemory> textureImageMemory{device, vkFreeMemory};
-
-  /*
-  std::vector<Vertex> vertices;
-  std::vector<uint32_t> indices;
-
-  VDeleter<VkBuffer> vertexBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory> vertexBufferMemory{device, vkFreeMemory};
-  VDeleter<VkBuffer> indexBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory> indexBufferMemory{device, vkFreeMemory};
-
-  VDeleter<VkBuffer> uniformStagingBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory> uniformStagingBufferMemory{device, vkFreeMemory};
-  VDeleter<VkBuffer> uniformBuffer{device, vkDestroyBuffer};
-  VDeleter<VkDeviceMemory>uniformBufferMemory{device, vkFreeMemory};
-  */
-
+  //Maintains a pool of descriptors based on the information in the descriptor set layout above. Allocates a descriptor, used to describe properties of an object, whenever necessary. In this case we are storing information regarding the object position and texture.
   VDeleter<VkDescriptorPool> descriptorPool{device, vkDestroyDescriptorPool};
-  //VkDescriptorSet descriptorSet;
 
-  //VDeleter<VkImageView> textureImageView{device, vkDestroyImageView};
-
-  //VDeleter<VkSampler> textureSampler{device, vkDestroySampler};
-
+  //Used to hold information about the distance of each pixel from the camera. Used to determine depth and layering of objects relative to the camera.
   VDeleter<VkImage> depthImage{device, vkDestroyImage};
   VDeleter<VkDeviceMemory> depthImageMemory{device, vkFreeMemory};
   VDeleter<VkImageView> depthImageView{device, vkDestroyImageView};
 
-  //bool leftDown = false;
-  //double startX = 0.0d;
-  //double startY = 0.0d;
 
-  //float modelRotation = 0.0f;
+  /*
+   * All descriptions of class functions can be found in VulkanApplication.cpp
+   */
 
   void initWindow();
-
 
   void initVulkan();
 #ifdef ENUMERATE_EXTENSIONS
@@ -236,8 +238,6 @@ class VulkanApplication {
   void drawFrame();
   void recreateSwapChain();
 
-  //void addMesh(Mesh *mesh); //@TODO: To do this, need to create Uniform Buffer, descriptorSet, vertexBuffer, indexBuffer, and record commandBuffer.
-  //void deleteMesh(Mesh *mesh); //@TODO: To do this, need to delete the MeshInternal object and record commandBuffer.
 
   std::vector<const char*> getRequiredExtensions();
   bool checkValidationLayerSupport();

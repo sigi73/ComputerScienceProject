@@ -27,18 +27,6 @@
 VulkanApplication::VulkanApplication() {
 }
 
-/*
-VulkanApplication::VulkanApplication(int width, int height, std::vector<Mesh*>* inMeshes, std::vector<Texture*>* inTextures, glm::mat4 *cameraTransformPointer, GLFWwindow **inUserWindow, void (*loop)(float)) {
-  WIDTH = width;
-  HEIGHT = height;
-  inputMeshes = *inMeshes;
-  inputTextures = *inTextures;
-  userLoop = loop;
-  cameraTransform = cameraTransformPointer;
-  userWindow = inUserWindow;
-}
- */
-
 VulkanApplication::VulkanApplication(int width, int height, glm::mat4 *cameraTransformPointer, GLFWwindow **inUserWindow, void *inApp, void (*loop)(float, void *inApp), void (*window)(void *app)) {
   WIDTH = width;
   HEIGHT = height;
@@ -61,48 +49,13 @@ void VulkanApplication::startMainLoop() {
   mainLoop();
 }
 
-void VulkanApplication::addMesh(Mesh *newMesh) {
-  inputMeshes.push_back(newMesh);
-  MeshInternal *mesh = new MeshInternal(device, newMesh);
-  //MeshInternal mesh(device, newMesh);
-  bool hasTexture = false;
-  for (int i = 0; i < textures.size(); i++) {
-    if (newMesh->texture == textures[i].baseTexture) {
-      mesh->texture = &textures[i];
-      //mesh.texture = &textures[i];
-      hasTexture = true;
-      break;
-    }
-  }
-
-  if (!hasTexture) {
-    TextureInternal *textureInternal = new TextureInternal{device, newMesh->texture};
-    //TextureInternal textureInternal(device, newMesh->texture);
-    createSingleTextureImage(textureInternal);
-    createSingleTextureImageView(textureInternal);
-    createSingleTextureSampler(textureInternal);
-    textures.push_back(*textureInternal);
-    mesh->texture = textureInternal;
-    //mesh.texture = &textureInternal;
-  }
-
-  createSingleVertexBuffer(mesh);
-  createSingleIndexBuffer(mesh);
-  createSingleUniformBuffer(mesh);
-  createSingleDescriptorSet(mesh);
-  meshes.push_back(*mesh);
-  createGraphicsPipeline();
-  recreateSwapChain();
-  //createCommandBuffers();
-}
-
 void VulkanApplication::initWindow() {
   glfwInit();
 
   glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-  window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+  window = glfwCreateWindow(WIDTH, HEIGHT, "Siddharth's Rendering Engine", nullptr, nullptr);
   *userWindow = window;
 
 
@@ -237,6 +190,9 @@ bool VulkanApplication::checkValidationLayerSupport() {
   return true;
 }
 
+/*
+ * Creates the VkInstance, the main vulkan instance. It requires data from structures VkApplicationInfo and VkInstanceCreateInfo, using the passed application name and version. It also loads any vulkan extensions the user needs, which are required for vulkan to interface with different operating systems. If desired, validation layers can also be loaded, which facillitate the reporting of errors within Vulkan.
+ */
 void VulkanApplication::createInstance() {
   if (enableValidationLayers && !checkValidationLayerSupport()) {
     printf("Checking if validation layers are available");
@@ -278,12 +234,18 @@ void VulkanApplication::createInstance() {
 
 }
 
+/*
+ * Creates a window surface that the final rendered image is loaded to.
+ */
 void VulkanApplication::createSurface() {
   if (glfwCreateWindowSurface(instance, window, nullptr, surface.replace()) != VK_SUCCESS) {
     throw std::runtime_error("Failed to create window surface\n");
   }
 }
 
+/*
+ * Only called if validation layers are requested. Sets up a callback that is called whenever debug information needs to be reported by a validation layer.
+ */
 void VulkanApplication::setupDebugCallback() {
   if (!enableValidationLayers) return;
 
@@ -298,6 +260,9 @@ void VulkanApplication::setupDebugCallback() {
   }
 }
 
+/*
+ * Many desktop systems have more than one physical device. This function picks the first device that has support for the requested extensions. It also makes sure that the device has the correct types of queues in order to be able to recieve all the data we want to send.
+ */
 void VulkanApplication::pickPhysicalDevice() {
   uint32_t deviceCount = 0;
   vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
@@ -408,6 +373,9 @@ bool VulkanApplication::checkDeviceExtensionSupport(VkPhysicalDevice device) {
   return requiredExtensions.empty();
 }
 
+/*
+ * Logical devices are allocated to physical devices. Creation requires a description of the features being used, and enumeration of the queues that this logical device will be using.
+ */
 void VulkanApplication::createLogicalDevice() {
   QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
 
@@ -454,6 +422,9 @@ void VulkanApplication::createLogicalDevice() {
 }
 
 
+/*
+ * Creates the swapChain. The swapchain is an extension that allows the program to present images to the screen. This is done through a swapping procedure; when the next image is ready in memory it will swap it with the current image on the screen. It also can query information about the swapchain.
+ */
 void VulkanApplication::createSwapChain() {
   SwapChainSupportDetails swapChainSupport =
       querySwapChainSupport(physicalDevice);
@@ -520,6 +491,10 @@ void VulkanApplication::createSwapChain() {
 
 }
 
+/*
+ *
+The image view defines how to access an image and what parts of it to access. It has the same size as the number of images supported by the swapchain. It can also be used to manipulate color channels.
+ */
 void VulkanApplication::createImageViews() {
   swapChainImageViews.resize(swapChainImages.size(), VDeleter<VkImageView>
       {device, vkDestroyImageView});
@@ -553,6 +528,11 @@ aspectFlags, VDeleter<VkImageView> &imageView) {
   }
 }
 
+/*
+ * The render pass object is used to tell Vulkan about the color and depth buffers and how to handle their contents. There are more efficent ways to store data based on if they are going to be rendered, copied to another memory location, or to be used to read from for other operations.
+ *
+ * Render passes consist of subpasses. Each can be used to apply affects on the previous. We define a color subpass and depth subpass that are used to store the color information, and depth information of each pixel.
+ */
 void VulkanApplication::createRenderPass() {
   VkAttachmentDescription colorAttachment = {};
   colorAttachment.format = swapChainImageFormat;
@@ -617,6 +597,15 @@ void VulkanApplication::createRenderPass() {
 
 }
 
+/*
+ * Resource descriptors are ways for shaders to access resources like buffers and matricies. Usage requires the
+ * 1. specification of a desciptor layout, which specifies resources,
+ * 2. allocation of a descriptor set, the actual buffer, from a descriptor layout,
+ * 3. binding of the desciptor set during rendering.
+ *
+ * We currently have two descriptor sets, one for the transform, and one for the texture data being loaded.
+ */
+
 void VulkanApplication::createDescriptorSetLayout() {
   VkDescriptorSetLayoutBinding uboLayoutBinding = {};
   uboLayoutBinding.binding = 0;
@@ -646,6 +635,10 @@ void VulkanApplication::createDescriptorSetLayout() {
   }
 }
 
+/*
+ * Loads the vertex and fragment shaders.
+ * Also allows for the definition of many features such as color blending, rasterizing, and depth control.
+ */
 void VulkanApplication::createGraphicsPipeline() {
   auto vertShaderCode = readFile("shaders/vert.spv");
   auto fragShaderCode = readFile("shaders/frag.spv");
@@ -810,6 +803,9 @@ void VulkanApplication::createShaderModule(const std::vector<char> &code, VDelet
   }
 }
 
+/*
+ * All of the options submitted are wrapped into a framebuffer object. We have multiple framebuffers for the different types of attachments i.e. color or depth, that can be returned.
+ */
 void VulkanApplication::createFramebuffers() {
   swapChainFramebuffers.resize(swapChainImageViews.size(),
                                VDeleter<VkFramebuffer>{device, vkDestroyFramebuffer});
@@ -836,6 +832,9 @@ void VulkanApplication::createFramebuffers() {
   }
 }
 
+/*
+ * Command buffers are commands run on the gpu and used to draw vertices. They are provided by a command pool.
+ */
 void VulkanApplication::createCommandPool() {
   QueueFamilyIndices queueFamilyIndices = findQueueFamilies(physicalDevice);
   VkCommandPoolCreateInfo poolInfo = {};
@@ -849,6 +848,9 @@ void VulkanApplication::createCommandPool() {
   }
 }
 
+/*
+ * A depth resource is an image that tells the depth of a pixel relative to the camera. We create it as Vulkan does not create it automatically
+ */
 void VulkanApplication::createDepthResources() {
   VkFormat depthFormat = findDepthFormat();
   createImage(swapChainExtent.width, swapChainExtent.height, depthFormat,
@@ -897,6 +899,9 @@ void VulkanApplication::createTextureImage() {
   }
 }
 
+/*
+ * Loads the image we want to draw into GPU memory. In general, the most optimal memory on graphics cards is not accessibly by the CPU. Therefore this creates a staging buffer in CPU accessible memory where the image is loaded into, then copied into more performant meory through a buffer copy command.
+ */
 void VulkanApplication::createSingleTextureImage(TextureInternal *texture) {
   VDeleter<VkImage> stagingImage{device, vkDestroyImage};
   VDeleter<VkDeviceMemory> stagingImageMemory{device, vkFreeMemory};
@@ -945,6 +950,9 @@ void VulkanApplication::createTextureImageView() {
   }
 }
 
+/*
+ * Loads the image we want to draw into GPU memory. In general, the most optimal memory on graphics cards is not accessibly by the CPU. Therefore this creates a staging buffer in CPU accessible memory where the image is loaded into, then copied into more performant memory through a buffer copy command.
+ */
 void VulkanApplication::createSingleTextureImageView(TextureInternal *texture) {
   createImageView(texture->textureImage, VK_FORMAT_R8G8B8A8_UNORM,
                   VK_IMAGE_ASPECT_COLOR_BIT, texture->textureImageView);
@@ -956,6 +964,9 @@ void VulkanApplication::createTextureSampler() {
   }
 }
 
+/*
+ * It is not common to load each pixel when reading textures. They are generally loaded through samplers that apply filtering and transformations to the image. For example, if the final 3D output has more fragments to render than there are pixels, using a sampler with linear interpolation can result in a better quality image than simply taking the nearest pixels.
+ */
 void VulkanApplication::createSingleTextureSampler(TextureInternal *texture) {
   VkSamplerCreateInfo samplerInfo = {};
   samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
@@ -1090,6 +1101,9 @@ void VulkanApplication::endSingleTimeCommands(VkCommandBuffer commandBuffer) {
 
 }
 
+/*
+ * Copies model and texture data from input. Builds MeshInternal and TextureInternal from the input Mesh and Texture objects
+ */
 void VulkanApplication::loadModels() {
 
   for (int i = 0; i < inputTextures.size(); i++) {
@@ -1119,6 +1133,10 @@ void VulkanApplication::createVertexBuffer() {
   }
 }
 
+/*
+ * Creates a staging buffer and final buffer for vertices, just like createTextureImage does for texture. This undergoes the same process of allocating, mapping, and transferring the vertex data to the GPU.
+ * The vertex buffer holds all of the positions of the verticies of each mesh
+ */
 void VulkanApplication::createSingleVertexBuffer(MeshInternal *mesh) {
   VkDeviceSize bufferSize = sizeof(mesh->vertices[0]) * mesh->vertices.size();
   VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
@@ -1148,6 +1166,11 @@ void VulkanApplication::createIndexBuffer() {
   }
 }
 
+/*
+ * An index buffer allows the reduction of data in the vertex buffer. Since complex models are made up of triangles with shared sides, they will also have shared verticies. Copying all vertices to the vertex buffer results in duplicate vertices. An index buffer can reduce the data usage by identifying the vertices used in triangles, therefore only requiring one of each uniqe vertex in the vertex buffer.
+ *
+ * Creating the index buffer undergoes the same process as the vertex buffer in the creation of a staging and final buffer.
+ */
 void VulkanApplication::createSingleIndexBuffer(MeshInternal *mesh) {
   VkDeviceSize bufferSize = sizeof(mesh->indices[0]) * mesh->indices.size();
   VDeleter<VkBuffer> stagingBuffer{device, vkDestroyBuffer};
@@ -1177,6 +1200,9 @@ void VulkanApplication::createUniformBuffer() {
   }
 }
 
+/*
+ * Creates a buffer that is accessibly by the shaders. This is where we put the UniformBufferObject that defines the transformation of the respective meshes.
+ */
 void VulkanApplication::createSingleUniformBuffer(MeshInternal *mesh) {
   VkDeviceSize bufferSize = sizeof(UniformBufferObject);
 
@@ -1298,6 +1324,9 @@ uint32_t VulkanApplication::findMemoryType(uint32_t typeFilter, VkMemoryProperty
   throw std::runtime_error("Failed to find suitable memory type");
 }
 
+/*
+ * To create a descriptorSet, a descriptorPool needs to be defined to show the usage of the set.
+ */
 void VulkanApplication::createDescriptorPool() {
   std::array<VkDescriptorPoolSize, 2> poolSizes = {};
   poolSizes[0].type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
@@ -1326,6 +1355,9 @@ void VulkanApplication::createDescriptorSet() {
   }
 }
 
+/*
+ * A descriptorSet defines bindings between memory and shaders.
+ */
 void VulkanApplication::createSingleDescriptorSet(MeshInternal *mesh) {
   VkDescriptorSetLayout layouts[] = {descriptorSetLayout};
   VkDescriptorSetAllocateInfo allocInfo = {};
@@ -1372,6 +1404,9 @@ void VulkanApplication::createSingleDescriptorSet(MeshInternal *mesh) {
                          descriptorWrites.data(), 0, nullptr);
 }
 
+/*
+ * Command buffers are objects used to record commands which can be submitted to a device queue, our graphics card, for execution.
+ */
 void VulkanApplication::createCommandBuffers() {
   if (commandBuffers.size() > 0) {
     vkFreeCommandBuffers(device, commandPool, commandBuffers.size(),
@@ -1451,6 +1486,9 @@ void VulkanApplication::createCommandBuffers() {
   }
 }
 
+/*
+ * Semaphores allow for the syncronization of the process of aquiring the image, executing the command buffer, and presenting the image.  One semaphore is used to signal that an image has been aquired and is ready for rendering, and one that rendering is finished and the image can be presented.
+ */
 void VulkanApplication::createSemaphores() {
   VkSemaphoreCreateInfo semaphoreInfo = {};
   semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
