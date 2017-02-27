@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/VulkanEngine.dir/Texture.cpp.o"
   "CMakeFiles/VulkanEngine.dir/TextureInternal.cpp.o"
   "CMakeFiles/VulkanEngine.dir/Application.cpp.o"
+  "CMakeFiles/VulkanEngine.dir/SampleGame.cpp.o"
   "VulkanEngine.pdb"
   "VulkanEngine"
 )

@@ -30,7 +30,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(Packages/glfw)
 
 
-set(SOURCE_FILES main.cpp VDeleter.cpp VDeleter.h VulkanCommon.h Mesh.cpp Mesh.h VulkanCommon.cpp VulkanApplication.cpp VulkanApplication.h MeshInternal.cpp MeshInternal.h Texture.cpp Texture.h TextureInternal.cpp TextureInternal.h Application.cpp Application.h)
+set(SOURCE_FILES main.cpp VDeleter.cpp VDeleter.h VulkanCommon.h Mesh.cpp Mesh.h VulkanCommon.cpp VulkanApplication.cpp VulkanApplication.h MeshInternal.cpp MeshInternal.h Texture.cpp Texture.h TextureInternal.cpp TextureInternal.h Application.cpp Application.h SampleGame.cpp SampleGame.h)
 add_executable(VulkanEngine ${SOURCE_FILES})
 target_link_libraries(VulkanEngine glfw)
 target_link_libraries(VulkanEngine vulkan)

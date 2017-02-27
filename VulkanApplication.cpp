@@ -123,6 +123,9 @@ void VulkanApplication::mainLoop() {
     long deltaTime = currentTime - lastTime;
     float deltaSeconds = deltaTime / 1000.0f;
 
+    if (deltaSeconds > 2.0f) deltaSeconds = 0.0f;
+    if (deltaSeconds < 0.0f) deltaSeconds = 0.0f;
+
     //The user loop is called to let the user update the transforms of meshes
     (*userLoop)(deltaSeconds, app);
     //Copies the user changes of the object transforms to GPU memory
@@ -1531,7 +1534,7 @@ void VulkanApplication::updateUniformBuffer() {
     //ubo.view = glm::lookAt(glm::vec3(2.0f, 2.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
     ubo.view = *cameraTransform;
     ubo.proj = glm::perspective(glm::radians(45.0f), swapChainExtent.width /
-        (float) swapChainExtent.height, 0.1f, 10.0f);
+        (float) swapChainExtent.height, 0.1f, 100.0f); //Cull near and fall is the last two arguments!!
 
     ubo.proj[1][1] *= -1;
 

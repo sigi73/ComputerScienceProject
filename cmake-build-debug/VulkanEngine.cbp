@@ -295,6 +295,12 @@
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Packages/glfw/src/xkb_unicode.h">
 			<Option target="glfw"/>
 		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/SampleGame.cpp">
+			<Option target="VulkanEngine"/>
+		</Unit>
+		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/SampleGame.h">
+			<Option target="VulkanEngine"/>
+		</Unit>
 		<Unit filename="/home/siddharth/ClionProjects/VulkanEngine/Texture.cpp">
 			<Option target="VulkanEngine"/>
 		</Unit>

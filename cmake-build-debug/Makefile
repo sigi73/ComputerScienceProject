@@ -274,6 +274,33 @@ MeshInternal.cpp.s:
 	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/MeshInternal.cpp.s
 .PHONY : MeshInternal.cpp.s
 
+SampleGame.o: SampleGame.cpp.o
+
+.PHONY : SampleGame.o
+
+# target to build an object file
+SampleGame.cpp.o:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/SampleGame.cpp.o
+.PHONY : SampleGame.cpp.o
+
+SampleGame.i: SampleGame.cpp.i
+
+.PHONY : SampleGame.i
+
+# target to preprocess a source file
+SampleGame.cpp.i:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/SampleGame.cpp.i
+.PHONY : SampleGame.cpp.i
+
+SampleGame.s: SampleGame.cpp.s
+
+.PHONY : SampleGame.s
+
+# target to generate assembly for a file
+SampleGame.cpp.s:
+	$(MAKE) -f CMakeFiles/VulkanEngine.dir/build.make CMakeFiles/VulkanEngine.dir/SampleGame.cpp.s
+.PHONY : SampleGame.cpp.s
+
 Texture.o: Texture.cpp.o
 
 .PHONY : Texture.o
@@ -460,6 +487,9 @@ help:
 	@echo "... MeshInternal.o"
 	@echo "... MeshInternal.i"
 	@echo "... MeshInternal.s"
+	@echo "... SampleGame.o"
+	@echo "... SampleGame.i"
+	@echo "... SampleGame.s"
 	@echo "... Texture.o"
 	@echo "... Texture.i"
 	@echo "... Texture.s"
